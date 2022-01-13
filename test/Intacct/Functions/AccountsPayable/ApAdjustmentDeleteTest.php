@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentDelete
  */
-class ApAdjustmentDeleteTest extends \PHPUnit\Framework\TestCase
+class ApAdjustmentDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

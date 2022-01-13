@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo\GreaterThanOrEqualToInteger
  */
-class GreaterThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
+class GreaterThanOrEqualToIntegerTest extends TestCase
 {
 
     public function testToString(): void

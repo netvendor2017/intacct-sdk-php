@@ -17,18 +17,19 @@
 
 namespace Intacct;
 
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use Intacct\Exception\ResultException;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\Functions\Common\ReadByQuery;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\OnlineClient
  */
-class OnlineClientTest extends \PHPUnit\Framework\TestCase
+class OnlineClientTest extends TestCase
 {
 
     public function testExecute(): void
@@ -78,7 +79,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $client = new OnlineClient($clientConfig);
 
@@ -89,7 +90,7 @@ EOF;
 
     public function testExecuteResultException(): void
     {
-        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectException(ResultException::class);
         $this->expectExceptionMessage("Result status: failure for Control ID: func1UnitTest - Get API Session Failed Something went wrong");
 
         $xml = <<<EOF
@@ -138,16 +139,16 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute(new ApiSessionCreate('func1UnitTest'));
+        $client->execute(new ApiSessionCreate('func1UnitTest'));
     }
 
     public function testExecuteBatchTransactionResultException(): void
     {
-        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectException(ResultException::class);
         $this->expectExceptionMessage("Result status: failure for Control ID: func2UnitTest - Get API Session Failed Something went wrong - XL03000009 The entire transaction in this operation has been rolled back due to an error.");
 
         $xml = <<<EOF
@@ -215,14 +216,14 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $client = new OnlineClient($clientConfig);
 
         $requestConfig = new RequestConfig();
         $requestConfig->setTransaction(true);
 
-        $response = $client->executeBatch([
+        $client->executeBatch([
             new ApiSessionCreate('func1UnitTest'),
             new ApiSessionCreate('func2UnitTest')
         ], $requestConfig);
@@ -270,7 +271,7 @@ EOF;
             $mockResponse,
         ]);
 
-        $handle = fopen('php://memory', 'a+');
+        $handle = fopen('php://memory', 'ab+');
         $handler = new StreamHandler($handle);
 
         $logger = new Logger('unittest');
@@ -280,12 +281,12 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
         $clientConfig->setLogger($logger);
 
         $client = new OnlineClient($clientConfig);
 
-        $response = $client->execute(new ReadByQuery('func1UnitTest'));
+        $client->execute(new ReadByQuery('func1UnitTest'));
 
         fseek($handle, 0);
         $contents = '';

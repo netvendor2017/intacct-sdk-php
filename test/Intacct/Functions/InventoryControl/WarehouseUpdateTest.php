@@ -19,11 +19,12 @@ namespace Intacct\Functions\InventoryControl;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseUpdate
  */
-class WarehouseUpdateTest extends \PHPUnit\Framework\TestCase
+class WarehouseUpdateTest extends TestCase
 {
 
     public function testConstruct(): void

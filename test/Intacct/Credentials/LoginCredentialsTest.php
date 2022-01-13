@@ -18,11 +18,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\LoginCredentials
  */
-class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
+class LoginCredentialsTest extends TestCase
 {
 
     /**
@@ -60,7 +62,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertThat(
             $loginCreds->getSenderCredentials(),
-            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+            $this->isInstanceOf(SenderCredentials::class)
         );
     }
 
@@ -82,7 +84,7 @@ class LoginCredentialsTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('https://api.intacct.com/ia/xml/xmlgw.phtml', $endpoint);
         $this->assertThat(
             $loginCreds->getSenderCredentials(),
-            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+            $this->isInstanceOf(SenderCredentials::class)
         );
     }
 
@@ -189,7 +191,7 @@ EOF;
     public function testCredsFromArrayNoCompanyId(): void
     {
         $this->expectExceptionMessage("Required Company ID not supplied in config or env variable \"INTACCT_COMPANY_ID\"");
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $config = new ClientConfig();
         $config->setCompanyId('');
@@ -201,7 +203,7 @@ EOF;
 
     public function testCredsFromArrayNoUserId(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Required User ID not supplied in config or env variable \"INTACCT_USER_ID\"");
 
         $config = new ClientConfig();
@@ -214,7 +216,7 @@ EOF;
 
     public function testCredsFromArrayNoUserPassword(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Required User Password not supplied in config or env variable \"INTACCT_USER_PASSWORD\"");
 
         $config = new ClientConfig();

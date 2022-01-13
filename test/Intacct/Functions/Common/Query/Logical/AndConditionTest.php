@@ -17,11 +17,12 @@
 namespace Intacct\Functions\Common\Query\Logical;
 
 use Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Logical\AndCondition
  */
-class AndConditionTest extends \PHPUnit\Framework\TestCase
+class AndConditionTest extends TestCase
 {
 
     public function testToString(): void

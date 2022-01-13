@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryCreate
  */
-class StatisticalJournalEntryCreateTest extends \PHPUnit\Framework\TestCase
+class StatisticalJournalEntryCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -100,8 +102,8 @@ EOF;
 
         $journalEntry = new StatisticalJournalEntryCreate('unittest');
         $journalEntry->setJournalSymbol('SJ');
-        $journalEntry->setPostingDate(new \DateTime('2016-06-30'));
-        $journalEntry->setReverseDate(new \DateTime('2016-07-01'));
+        $journalEntry->setPostingDate(new DateTime('2016-06-30'));
+        $journalEntry->setReverseDate(new DateTime('2016-07-01'));
         $journalEntry->setDescription('My desc');
         $journalEntry->setHistoryComment('comment!');
         $journalEntry->setReferenceNumber('123');

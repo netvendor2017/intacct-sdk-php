@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\ContactDelete
  */
-class ContactDeleteTest extends \PHPUnit\Framework\TestCase
+class ContactDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

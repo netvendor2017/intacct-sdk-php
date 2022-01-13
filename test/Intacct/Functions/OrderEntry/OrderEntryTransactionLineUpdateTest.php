@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\OrderEntry;
 
+use DateTime;
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionLineUpdate
+ * @coversDefaultClass \Intacct\Functions\OrderEntry\OrderEntryTransactionLineUpdate
  */
-class OrderEntryTransactionLineUpdateTest extends \PHPUnit\Framework\TestCase
+class OrderEntryTransactionLineUpdateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -126,8 +128,8 @@ EOF;
         $entry->setDiscountSurchargeMemo('None');
         $entry->setMemo('Memo');
         $entry->setRevRecTemplate('template');
-        $entry->setRevRecStartDate(new \DateTime('2015-06-30'));
-        $entry->setRevRecEndDate(new \DateTime('2015-07-31'));
+        $entry->setRevRecStartDate(new DateTime('2015-06-30'));
+        $entry->setRevRecEndDate(new DateTime('2015-07-31'));
         $entry->setRenewalMacro('Quarterly');
         $entry->setFulfillmentStatus('Complete');
         $entry->setTaskNumber('9850');

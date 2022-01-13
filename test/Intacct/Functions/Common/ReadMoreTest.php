@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadMore
  */
-class ReadMoreTest extends \PHPUnit\Framework\TestCase
+class ReadMoreTest extends TestCase
 {
 
     public function testParamOverrides(): void

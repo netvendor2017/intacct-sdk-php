@@ -16,12 +16,14 @@
 
 namespace Intacct\Xml\Response;
 
+use Intacct\Exception\IntacctException;
 use Intacct\Xml\OnlineResponse;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Response\Authentication
  */
-class AuthenticationTest extends \PHPUnit\Framework\TestCase
+class AuthenticationTest extends TestCase
 {
 
     public function testAuthenticationResponse(): void
@@ -74,7 +76,7 @@ EOF;
 
     public function testMissingStatusElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Authentication block is missing status element");
 
         $xml = <<<EOF
@@ -105,7 +107,7 @@ EOF;
 
     public function testMissingUserIdElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Authentication block is missing userid element");
 
         $xml = <<<EOF
@@ -136,7 +138,7 @@ EOF;
 
     public function testMissingCompanyIdElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Authentication block is missing companyid element");
 
         $xml = <<<EOF

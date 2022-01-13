@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentApply
  */
-class ArPaymentApplyTest extends \PHPUnit\Framework\TestCase
+class ArPaymentApplyTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -50,14 +52,14 @@ EOF;
 
         $payment = new ArPaymentApply('unittest');
         $payment->setRecordNo(1234);
-        $payment->setReceivedDate(new \DateTime('2016-06-30'));
+        $payment->setReceivedDate(new DateTime('2016-06-30'));
 
         $payment->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testRequiredRecordNo()
+    public function testRequiredRecordNo() : void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Record No is required for apply");
@@ -70,7 +72,7 @@ EOF;
 
         $payment = new ArPaymentApply('unittest');
         //$payment->setRecordNo(1234);
-        $payment->setReceivedDate(new \DateTime('2016-06-30'));
+        $payment->setReceivedDate(new DateTime('2016-06-30'));
 
         $payment->writeXml($xml);
     }

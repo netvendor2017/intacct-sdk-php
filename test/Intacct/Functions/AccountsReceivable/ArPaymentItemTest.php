@@ -18,11 +18,12 @@
 namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentItem
  */
-class ArPaymentItemTest extends \PHPUnit\Framework\TestCase
+class ArPaymentItemTest extends TestCase
 {
 
     public function testDefaultParams(): void

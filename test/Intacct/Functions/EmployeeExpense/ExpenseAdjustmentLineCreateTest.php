@@ -17,12 +17,14 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseAdjustmentLineCreate
  */
-class ExpenseAdjustmentLineCreateTest extends \PHPUnit\Framework\TestCase
+class ExpenseAdjustmentLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -103,9 +105,9 @@ EOF;
         $line->setReimbursementAmount(1025.99);
         $line->setTransactionCurrency('USD');
         $line->setTransactionAmount(76343.43);
-        $line->setExchangeRateDate(new \DateTime('2016-06-30'));
+        $line->setExchangeRateDate(new DateTime('2016-06-30'));
         $line->setExchangeRateType('Intacct Daily Rate');
-        $line->setExpenseDate(new \DateTime('2016-06-30'));
+        $line->setExpenseDate(new DateTime('2016-06-30'));
         $line->setMemo('Marriott');
         $line->setBillable(true);
         $line->setPaymentTypeName('AMEX');

@@ -18,11 +18,13 @@
 namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\LogicalFilter
  */
-class LogicalFilterTest extends \PHPUnit\Framework\TestCase
+class LogicalFilterTest extends TestCase
 {
 
     public function testDefaultConstruct(): void
@@ -92,7 +94,7 @@ EOF;
 
     public function testNotEnoughFilters(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Logical Filters count must be 2 or more");
 
         $xml = new XMLWriter();

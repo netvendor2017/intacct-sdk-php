@@ -17,12 +17,14 @@
 
 namespace Intacct\Functions\GeneralLedger;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\JournalEntryLineCreate
  */
-class JournalEntryLineCreateTest extends \PHPUnit\Framework\TestCase
+class JournalEntryLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -49,7 +51,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testCreditAmount()
+    public function testCreditAmount() : void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -113,7 +115,7 @@ EOF;
         $jeEntry->setGlAccountNumber('1010');
         $jeEntry->setTransactionAmount(1456.54);
         $jeEntry->setTransactionCurrency('USD');
-        $jeEntry->setExchangeRateDate(new \DateTime('2016-06-30'));
+        $jeEntry->setExchangeRateDate(new DateTime('2016-06-30'));
         $jeEntry->setExchangeRateType('Intacct Daily Rate');
         $jeEntry->setMemo('my memo');
         $jeEntry->setLocationId('100');

@@ -18,8 +18,9 @@
 namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class CompanyPrefsGetTest extends \PHPUnit\Framework\TestCase
+class CompanyPrefsGetTest extends TestCase
 {
     public function testGenerateXml(): void
     {

@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsReceivable\PaymentServices;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\PaymentServices\CustomerChargeCardCreate
  */
-class CustomerChargeCardCreateTest extends \PHPUnit\Framework\TestCase
+class CustomerChargeCardCreateTest extends TestCase
 {
 
     public function testConstruct(): void

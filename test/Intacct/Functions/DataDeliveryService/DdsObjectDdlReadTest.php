@@ -18,11 +18,12 @@
 namespace Intacct\Functions\DataDeliveryService;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsObjectDdlRead
  */
-class DdsObjectDdlReadTest extends \PHPUnit\Framework\TestCase
+class DdsObjectDdlReadTest extends TestCase
 {
 
     public function testDefaultParams(): void

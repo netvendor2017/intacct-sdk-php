@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\LessThan;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThan\LessThanFloat
  */
-class LessThanFloatTest extends \PHPUnit\Framework\TestCase
+class LessThanFloatTest extends TestCase
 {
 
     public function testToString(): void

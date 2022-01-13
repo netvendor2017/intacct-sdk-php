@@ -18,11 +18,12 @@
 namespace Intacct\Functions;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AbstractFunction
  */
-class AbstractFunctionTest extends \PHPUnit\Framework\TestCase
+class AbstractFunctionTest extends TestCase
 {
 
     /** @var AbstractFunction */

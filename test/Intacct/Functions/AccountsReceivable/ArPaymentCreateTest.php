@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentCreate
  */
-class ArPaymentCreateTest extends \PHPUnit\Framework\TestCase
+class ArPaymentCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -55,7 +57,7 @@ EOF;
         $payment->setCustomerId('C0020');
         $payment->setTransactionPaymentAmount(1922.12);
         $payment->setSummaryRecordNo(123);
-        $payment->setReceivedDate(new \DateTime('2016-06-30'));
+        $payment->setReceivedDate(new DateTime('2016-06-30'));
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);
@@ -76,7 +78,7 @@ EOF;
 
         $payment = new ArPaymentCreate('unittest');
         //$payment->setCustomerId('C0020');
-        $payment->setReceivedDate(new \DateTime('2016-06-30'));
+        $payment->setReceivedDate(new DateTime('2016-06-30'));
         $payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);
@@ -114,7 +116,7 @@ EOF;
 
         $payment = new ArPaymentCreate('unittest');
         $payment->setCustomerId('C0020');
-        $payment->setReceivedDate(new \DateTime('2016-06-30'));
+        $payment->setReceivedDate(new DateTime('2016-06-30'));
         //$payment->setPaymentMethod($payment::PAYMENT_METHOD_CHECK);
 
         $payment->writeXml($xml);

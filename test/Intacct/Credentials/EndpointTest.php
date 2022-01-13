@@ -17,11 +17,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Endpoint
+ * @coversDefaultClass \Intacct\Credentials\Endpoint
  */
-class EndpointTest extends \PHPUnit\Framework\TestCase
+class EndpointTest extends TestCase
 {
     public function testDefaultEndpoint(): void
     {
@@ -62,7 +64,7 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
 
     public function testInvalidUrlEndpoint(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Endpoint URL is not a valid URL.');
 
         $config = new ClientConfig();
@@ -73,7 +75,7 @@ class EndpointTest extends \PHPUnit\Framework\TestCase
 
     public function testInvalidIntacctUrlEndpoint(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Endpoint URL is not a valid intacct.com domain name.');
 
         $config = new ClientConfig();

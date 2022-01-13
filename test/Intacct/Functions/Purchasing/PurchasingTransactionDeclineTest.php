@@ -18,11 +18,12 @@
 namespace Intacct\Functions\Purchasing;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionCreate
  */
-class PurchasingTransactionDeclineTest extends \PHPUnit\Framework\TestCase
+class PurchasingTransactionDeclineTest extends TestCase
 {
 
     public function testDefaultParams(): void

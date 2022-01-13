@@ -17,10 +17,14 @@
 
 namespace Intacct\Xml\Response;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Xml\AbstractResponse;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\Response\Control
  */
-class ControlTest extends \PHPUnit\Framework\TestCase
+class ControlTest extends TestCase
 {
 
     /**
@@ -50,7 +54,7 @@ EOF;
         $args = [
             $xml,
         ];
-        $stub = $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
+        $stub = $this->getMockForAbstractClass(AbstractResponse::class, $args);
 
         $this->object = $stub->getControl();
     }
@@ -82,7 +86,7 @@ EOF;
 
     public function testMissingStatusElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Control block is missing status element");
 
         $xml = <<<EOF
@@ -95,6 +99,6 @@ EOF;
         $args = [
             $xml,
         ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
+        $this->getMockForAbstractClass(AbstractResponse::class, $args);
     }
 }

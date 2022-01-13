@@ -18,12 +18,12 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentDelete
  */
-class ApPaymentDeleteTest extends \PHPUnit\Framework\TestCase
+class ApPaymentDeleteTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -44,7 +44,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::DELETE, 1234, 'unittest');
+        $classObj = ApPaymentFactory::create(AbstractApPaymentFunction::DELETE, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 

@@ -21,11 +21,12 @@ namespace Intacct\Functions\DataDeliveryService;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
 use DateTime;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\DataDeliveryService\DdsJobCreate
  */
-class DdsJobCreateTest extends \PHPUnit\Framework\TestCase
+class DdsJobCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

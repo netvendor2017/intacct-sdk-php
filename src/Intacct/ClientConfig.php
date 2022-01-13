@@ -17,7 +17,7 @@
 
 namespace Intacct;
 
-use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Handler\MockHandler;
 use Intacct\Credentials\CredentialsInterface;
 use Intacct\Logging\MessageFormatter;
 use Psr\Log\LoggerInterface;
@@ -330,25 +330,50 @@ class ClientConfig
         $this->logMessageFormatter = $logMessageFormatter;
     }
 
-    /**
-     * @var HandlerStack
-     */
-    private $requestHandler;
+    /** @var MockHandler */
+    private $mockHandler;
 
     /**
-     * @return HandlerStack
+     * @return MockHandler
      */
-    public function getRequestHandler() : HandlerStack
+    public function getMockHandler()
     {
-        return $this->requestHandler;
+        return $this->mockHandler;
     }
 
     /**
-     * @param HandlerStack $requestHandler
+     * @param MockHandler $mockHandler
      */
-    public function setRequestHandler(HandlerStack $requestHandler)
+    public function setMockHandler(MockHandler $mockHandler)
     {
-        $this->requestHandler = $requestHandler;
+        $this->mockHandler = $mockHandler;
+    }
+
+    /** @var callable[] */
+    private $requestMiddleware = [];
+
+    /**
+     * @return callable[]
+     */
+    public function getRequestMiddleware() : array
+    {
+        return $this->requestMiddleware;
+    }
+
+    /**
+     * @param callable[] $requestMiddleware
+     */
+    public function setRequestMiddleware(array $requestMiddleware) : void
+    {
+        $this->requestMiddleware = $requestMiddleware;
+    }
+
+    /**
+     * @param callable[] $requestMiddleware
+     */
+    public function addRequestMiddlware(callable $requestMiddleware) : void
+    {
+        $this->requestMiddleware[] = $requestMiddleware;
     }
 
     /**

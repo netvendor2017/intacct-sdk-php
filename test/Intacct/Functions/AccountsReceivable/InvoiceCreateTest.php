@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\InvoiceCreate
  */
-class InvoiceCreateTest extends \PHPUnit\Framework\TestCase
+class InvoiceCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -57,7 +59,7 @@ EOF;
 
         $arInvoice = new InvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new \DateTime('2015-06-30'));
+        $arInvoice->setTransactionDate(new DateTime('2015-06-30'));
         $arInvoice->setPaymentTerm('N30');
 
         $line1 = new InvoiceLineCreate();
@@ -149,9 +151,9 @@ EOF;
 
         $arInvoice = new InvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new \DateTime('2015-06-30'));
-        $arInvoice->setGlPostingDate(new \DateTime('2015-06-30'));
-        $arInvoice->setDueDate(new \DateTime('2020-09-24'));
+        $arInvoice->setTransactionDate(new DateTime('2015-06-30'));
+        $arInvoice->setGlPostingDate(new DateTime('2015-06-30'));
+        $arInvoice->setDueDate(new DateTime('2020-09-24'));
         $arInvoice->setPaymentTerm('N30');
         $arInvoice->setAction('Submit');
         $arInvoice->setSummaryRecordNo('20323');
@@ -164,7 +166,7 @@ EOF;
         $arInvoice->setShipToContactName('289533');
         $arInvoice->setBaseCurrency('USD');
         $arInvoice->setTransactionCurrency('USD');
-        $arInvoice->setExchangeRateDate(new \DateTime('2015-06-30'));
+        $arInvoice->setExchangeRateDate(new DateTime('2015-06-30'));
         $arInvoice->setExchangeRateType('Intacct Daily Rate');
         $arInvoice->setDoNotPostToGL(false);
         $arInvoice->setAttachmentsId('6942');
@@ -203,7 +205,7 @@ EOF;
 
         $arInvoice = new InvoiceCreate('unittest');
         $arInvoice->setCustomerId('CUSTOMER1');
-        $arInvoice->setTransactionDate(new \DateTime('2015-06-30'));
+        $arInvoice->setTransactionDate(new DateTime('2015-06-30'));
         $arInvoice->setPaymentTerm('N30');
 
         $arInvoice->writeXml($xml);

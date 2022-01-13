@@ -17,15 +17,15 @@
 
 namespace Intacct;
 
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\Functions\Company\ApiSessionCreate;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\OfflineClient
  */
-class OfflineClientTest extends \PHPUnit\Framework\TestCase
+class OfflineClientTest extends TestCase
 {
 
     public function testExecute(): void
@@ -57,7 +57,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
         $requestConfig->setPolicyId('asyncPolicyId');
@@ -98,7 +98,7 @@ EOF;
         $clientConfig->setSenderId('testsender');
         $clientConfig->setSenderPassword('testsendpass');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
         $requestConfig->setPolicyId('asyncPolicyId');

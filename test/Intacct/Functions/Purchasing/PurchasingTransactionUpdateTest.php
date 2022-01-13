@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\Purchasing;
 
+use DateTime;
 use Intacct\Functions\InventoryControl\TransactionSubtotalUpdate;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionUpdate
  */
-class PurchasingTransactionUpdateTest extends \PHPUnit\Framework\TestCase
+class PurchasingTransactionUpdateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -124,11 +126,11 @@ EOF;
 
         $entry = new PurchasingTransactionUpdate('unittest');
         $entry->setExternalId('20394');
-        $entry->setTransactionDate(new \DateTime('2015-06-30'));
-        $entry->setGlPostingDate(new \DateTime('2015-06-30'));
+        $entry->setTransactionDate(new DateTime('2015-06-30'));
+        $entry->setGlPostingDate(new DateTime('2015-06-30'));
         $entry->setReferenceNumber('234235');
         $entry->setPaymentTerm('N30');
-        $entry->setDueDate(new \DateTime('2020-09-24'));
+        $entry->setDueDate(new DateTime('2020-09-24'));
         $entry->setMessage('Submit');
         $entry->setShippingMethod('USPS');
         $entry->setReturnToContactName('Bobbi Reese');
@@ -136,7 +138,7 @@ EOF;
         $entry->setAttachmentsId('6942');
         $entry->setBaseCurrency('USD');
         $entry->setTransactionCurrency('USD');
-        $entry->setExchangeRateDate(new \DateTime('2015-06-30'));
+        $entry->setExchangeRateDate(new DateTime('2015-06-30'));
         $entry->setExchangeRateType('Intacct Daily Rate');
         $entry->setState('Pending');
 

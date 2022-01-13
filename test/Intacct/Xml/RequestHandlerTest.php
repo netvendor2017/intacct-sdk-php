@@ -18,20 +18,22 @@
 
 namespace Intacct\Xml;
 
-use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
 use Intacct\ClientConfig;
 use Intacct\Exception\ResponseException;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\RequestConfig;
+use InvalidArgumentException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\RequestHandler
  */
-class RequestHandlerTest extends \PHPUnit\Framework\TestCase
+class RequestHandlerTest extends TestCase
 {
 
     public function testMockExecuteOnline(): void
@@ -82,7 +84,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
         $requestConfig->setControlId('unittest');
@@ -128,7 +130,7 @@ EOF;
         $clientConfig->setCompanyId('testcompany');
         $clientConfig->setUserId('testuser');
         $clientConfig->setUserPassword('testpass');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
         $requestConfig->setControlId('requestUnitTest');
@@ -146,7 +148,7 @@ EOF;
 
     public function testMockExecuteAsynchronousMissingPolicyId(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Required Policy ID not supplied in config for offline request");
 
         $clientConfig = new ClientConfig();
@@ -163,7 +165,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOffline($contentBlock);
+        $requestHandler->executeOffline($contentBlock);
     }
 
     public function testMockRetry(): void
@@ -215,7 +217,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
 
@@ -227,14 +229,14 @@ EOF;
         $requestHandler->executeOnline($contentBlock);
 
         $history = $requestHandler->getHistory();
-        $this->assertEquals(2, count($history));
+        $this->assertCount(2, $history);
         $this->assertEquals(502, $history[0]['response']->getStatusCode());
         $this->assertEquals(200, $history[1]['response']->getStatusCode());
     }
 
     public function testMock400LevelErrorWithXmlResponse(): void
     {
-        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectException(ResponseException::class);
 
         $xml = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -264,7 +266,7 @@ EOF;
         $clientConfig->setCompanyId('badcompany');
         $clientConfig->setUserId('baduser');
         $clientConfig->setUserPassword('badpass');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
 
@@ -278,7 +280,7 @@ EOF;
 
     public function testMockDefaultRetryFailure(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+        $this->expectException(ServerException::class);
 
         $mock = new MockHandler([
             new Response(500),
@@ -293,7 +295,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
 
@@ -307,7 +309,7 @@ EOF;
 
     public function testMockDefaultNo524Retry(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+        $this->expectException(ServerException::class);
 
         $mock = new MockHandler([
             new Response(524),
@@ -317,7 +319,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
 
         $requestConfig = new RequestConfig();
 
@@ -373,7 +375,7 @@ EOF;
             $mockResponse,
         ]);
 
-        $handle = fopen('php://memory', 'a+');
+        $handle = fopen('php://memory', 'ab+');
         $handler = new StreamHandler($handle, Logger::DEBUG);
         $logger = new Logger('unittest');
         $logger->pushHandler($handler);
@@ -382,7 +384,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
         $clientConfig->setLogger($logger);
 
         $requestConfig = new RequestConfig();
@@ -392,7 +394,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOnline($contentBlock);
+        $requestHandler->executeOnline($contentBlock);
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);
@@ -424,7 +426,7 @@ EOF;
             $mockResponse,
         ]);
 
-        $handle = fopen('php://memory', 'a+');
+        $handle = fopen('php://memory', 'ab+');
         $handler = new StreamHandler($handle, Logger::WARNING);
         $logger = new Logger('unittest');
         $logger->pushHandler($handler);
@@ -433,7 +435,7 @@ EOF;
         $clientConfig->setSenderId('testsenderid');
         $clientConfig->setSenderPassword('pass123!');
         $clientConfig->setSessionId('testsession..');
-        $clientConfig->setRequestHandler(HandlerStack::create($mock));
+        $clientConfig->setMockHandler($mock);
         $clientConfig->setLogger($logger);
 
         $requestConfig = new RequestConfig();
@@ -445,7 +447,7 @@ EOF;
         ];
 
         $requestHandler = new RequestHandler($clientConfig, $requestConfig);
-        $response = $requestHandler->executeOffline($contentBlock);
+        $requestHandler->executeOffline($contentBlock);
 
         // Test for some output in the StreamHandler
         fseek($handle, 0);

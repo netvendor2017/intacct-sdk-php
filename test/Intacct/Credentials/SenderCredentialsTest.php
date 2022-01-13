@@ -18,11 +18,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\SenderCredentials
  */
-class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
+class SenderCredentialsTest extends TestCase
 {
 
     public function testCredsFromConfig(): void
@@ -57,7 +59,7 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
     public function testCredsNoSenderId(): void
     {
         $this->expectExceptionMessage("Required Sender ID not supplied in config or env variable \"INTACCT_SENDER_ID\"");
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $config = new ClientConfig();
         //$config->setSenderId('testsenderid');
@@ -69,7 +71,7 @@ class SenderCredentialsTest extends \PHPUnit\Framework\TestCase
     public function testCredsNoSenderPassword(): void
     {
         $this->expectExceptionMessage("Required Sender Password not supplied in config or env variable \"INTACCT_SENDER_PASSWORD\"");
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $config = new ClientConfig();
         $config->setSenderId('testsenderid');

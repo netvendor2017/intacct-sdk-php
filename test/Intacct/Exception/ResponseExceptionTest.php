@@ -17,11 +17,12 @@
 namespace Intacct\Exception;
 
 use Intacct\Xml\OnlineResponse;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Exception\ResponseException
  */
-class ResponseExceptionTest extends \PHPUnit\Framework\TestCase
+class ResponseExceptionTest extends TestCase
 {
 
     public function testGetErrors(): void

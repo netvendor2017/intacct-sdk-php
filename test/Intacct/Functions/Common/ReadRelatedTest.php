@@ -17,11 +17,14 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use SplFixedArray;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadRelated
  */
-class ReadRelatedTest extends \PHPUnit\Framework\TestCase
+class ReadRelatedTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -88,7 +91,7 @@ EOF;
 
     public function testNoRelation(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Relation Name is required for read related");
 
         $xml = new XMLWriter();
@@ -105,10 +108,10 @@ EOF;
 
     public function testMaxNumberOfKeys(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Keys count cannot exceed 100");
 
-        $keys = new \SplFixedArray(101);
+        $keys = new SplFixedArray(101);
 
         $read = new ReadRelated('unittest');
         $read->setKeys($keys->toArray());

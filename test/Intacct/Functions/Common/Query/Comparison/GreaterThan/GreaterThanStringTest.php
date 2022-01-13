@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\GreaterThan;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\GreaterThan\GreaterThanString
  */
-class GreaterThanStringTest extends \PHPUnit\Framework\TestCase
+class GreaterThanStringTest extends TestCase
 {
 
     public function testToString(): void
@@ -45,7 +47,7 @@ class GreaterThanStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringEscapeQuotes()
+    public function testToStringEscapeQuotes() : void
     {
         $condition = new GreaterThanString();
         $condition->setField('VENDORNAME');

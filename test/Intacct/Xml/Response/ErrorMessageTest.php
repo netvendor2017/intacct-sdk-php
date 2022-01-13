@@ -17,10 +17,12 @@
 
 namespace Intacct\Xml\Response;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\Response\ErrorMessage
  */
-class ErrorMessageTest extends \PHPUnit\Framework\TestCase
+class ErrorMessageTest extends TestCase
 {
 
     /**

@@ -17,11 +17,13 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\LoginAuthentication
  */
-class LoginAuthenticationTest extends \PHPUnit\Framework\TestCase
+class LoginAuthenticationTest extends TestCase
 {
 
     public function testWriteXml(): void
@@ -103,7 +105,7 @@ EOF;
 
     public function testInvalidCompanyId(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Company ID is required and cannot be blank");
 
         new LoginAuthentication('testuser', '', 'testpass');
@@ -111,7 +113,7 @@ EOF;
 
     public function testInvalidUserId(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("User ID is required and cannot be blank");
 
         new LoginAuthentication('', 'testcompany', 'testpass');
@@ -119,7 +121,7 @@ EOF;
 
     public function testInvalidUserPass(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("User Password is required and cannot be blank");
 
         new LoginAuthentication('testuser', 'testcompany', '');

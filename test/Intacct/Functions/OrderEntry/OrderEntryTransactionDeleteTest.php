@@ -19,11 +19,12 @@ namespace Intacct\Functions\OrderEntry;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionDelete
+ * @coversDefaultClass \Intacct\Functions\OrderEntry\OrderEntryTransactionDelete
  */
-class OrderEntryTransactionDeleteTest extends \PHPUnit\Framework\TestCase
+class OrderEntryTransactionDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

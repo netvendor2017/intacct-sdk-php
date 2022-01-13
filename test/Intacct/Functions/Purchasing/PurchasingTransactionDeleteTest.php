@@ -19,11 +19,12 @@ namespace Intacct\Functions\Purchasing;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionDelete
  */
-class PurchasingTransactionDeleteTest extends \PHPUnit\Framework\TestCase
+class PurchasingTransactionDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

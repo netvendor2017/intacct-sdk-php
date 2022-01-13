@@ -18,8 +18,9 @@
 namespace Intacct\Functions\PlatformServices;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class DimensionRelationshipsGetTest extends \PHPUnit\Framework\TestCase
+class DimensionRelationshipsGetTest extends TestCase
 {
     public function testGenerateXml(): void
     {

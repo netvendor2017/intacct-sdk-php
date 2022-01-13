@@ -16,17 +16,20 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo;
 
+use DateTime;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo\LessThanOrEqualToDate
  */
-class LessThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
+class LessThanOrEqualToDateTest extends TestCase
 {
 
     public function testToString(): void
     {
         $condition = new LessThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
 
@@ -39,7 +42,7 @@ class LessThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
     {
         $condition = new LessThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
         $condition->setNegate(true);

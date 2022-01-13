@@ -16,17 +16,20 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 
+use DateTime;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToDate
  */
-class EqualToDateTest extends \PHPUnit\Framework\TestCase
+class EqualToDateTest extends TestCase
 {
 
     public function testToString(): void
     {
         $condition = new EqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
 
@@ -39,7 +42,7 @@ class EqualToDateTest extends \PHPUnit\Framework\TestCase
     {
         $condition = new EqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
         $condition->setNegate(true);

@@ -17,9 +17,11 @@
 
 namespace Intacct\Functions\Projects;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class TimesheetEntryUpdateTest extends \PHPUnit\Framework\TestCase
+class TimesheetEntryUpdateTest extends TestCase
 {
 
     public function testParams(): void
@@ -38,7 +40,7 @@ EOF;
         $xml->startDocument();
 
         $record = new TimesheetEntryUpdate('unittest');
-        $record->setEntryDate(new \DateTime('2016-06-30'));
+        $record->setEntryDate(new DateTime('2016-06-30'));
 
         $record->writeXml($xml);
 
@@ -78,7 +80,7 @@ EOF;
         $xml->startDocument();
 
         $record = new TimesheetEntryUpdate('unittest');
-        $record->setEntryDate(new \DateTime('2016-06-30'));
+        $record->setEntryDate(new DateTime('2016-06-30'));
         $record->setQuantity(1.75);
         $record->setDescription('desc');
         $record->setNotes('my note');

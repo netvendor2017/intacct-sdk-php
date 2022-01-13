@@ -18,11 +18,12 @@
 namespace Intacct\Functions\InventoryControl;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\InventoryTransactionLineCreate
  */
-class InventoryTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
+class InventoryTransactionLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

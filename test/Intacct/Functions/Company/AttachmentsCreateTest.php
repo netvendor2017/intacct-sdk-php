@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentsCreate
  */
-class AttachmentsCreateTest extends \PHPUnit\Framework\TestCase
+class AttachmentsCreateTest extends TestCase
 {
 
     public function testConstruct(): void

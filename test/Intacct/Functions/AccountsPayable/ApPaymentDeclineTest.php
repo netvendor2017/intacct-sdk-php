@@ -46,7 +46,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::DECLINE, 1234, 'unittest');
+        $classObj = ApPaymentFactory::create(AbstractApPaymentFunction::DECLINE, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 

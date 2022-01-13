@@ -16,16 +16,19 @@
 
 namespace Intacct\Xml\Response;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResultException;
 use Intacct\Xml\OnlineResponse;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Xml\Response\Operation\Result
+ * @coversDefaultClass \Intacct\Xml\Response\Result
  */
-class ResultTest extends \PHPUnit\Framework\TestCase
+class ResultTest extends TestCase
 {
 
     /**
-     * @var Result
+     * @var \Intacct\Xml\Response\Result
      */
     protected $object;
 
@@ -69,7 +72,7 @@ EOF;
 
     public function testConstruct(): void
     {
-        $this->assertThat($this->object, $this->isInstanceOf('Intacct\Xml\Response\Result'));
+        $this->assertThat($this->object, $this->isInstanceOf(Result::class));
     }
 
     public function testGetStatus(): void
@@ -139,7 +142,7 @@ EOF;
 
     public function testMissingStatusElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Result block is missing status element");
 
         $xml = <<<EOF
@@ -174,7 +177,7 @@ EOF;
 
     public function testMissingFunctionElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Result block is missing function element");
 
         $xml = <<<EOF
@@ -210,7 +213,7 @@ EOF;
 
     public function testMissingControlIdElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Result block is missing controlid element");
 
         $xml = <<<EOF
@@ -244,9 +247,9 @@ EOF;
         new OnlineResponse($xml);
     }
 
-    public function testStatusFailure()
+    public function testStatusFailure() : void
     {
-        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectException(ResultException::class);
         $this->expectExceptionMessage("Result status: failure for Control ID: testFunctionId - XXX Object definition VENDOR2 not found");
 
         $xml = <<<EOF
@@ -293,7 +296,7 @@ EOF;
 
     public function testStatusAbort(): void
     {
-        $this->expectException(\Intacct\Exception\ResultException::class);
+        $this->expectException(ResultException::class);
         $this->expectExceptionMessage("Result status: aborted for Control ID: testFunctionId - Query Failed Object definition VENDOR9 not found - XL03000009 The entire transaction in this operation has been rolled back due to an error.");
 
         $xml = <<<EOF

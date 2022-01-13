@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\VendorCreate
  */
-class VendorCreateTest extends \PHPUnit\Framework\TestCase
+class VendorCreateTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -210,7 +211,7 @@ EOF;
         $record->setAchBankAccountClass('CTX');
         $record->setVendorAccountNo('9999999');
         $record->setLocationAssignedAccountNoDisplayedOnCheckStub(false);
-        $record->setRestrictionType(VendorCreate::RESTRICTION_TYPE_RESTRICTED);
+        $record->setRestrictionType(AbstractVendor::RESTRICTION_TYPE_RESTRICTED);
         $record->setRestrictedLocations([
             '100',
             '200',
@@ -228,7 +229,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testRequiredName()
+    public function testRequiredName() : void
     {
         $this->expectExceptionMessage("Vendor Name is required for create");
         $this->expectException(InvalidArgumentException::class);

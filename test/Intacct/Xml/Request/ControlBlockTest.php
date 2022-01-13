@@ -20,11 +20,13 @@ namespace Intacct\Xml\Request;
 use Intacct\ClientConfig;
 use Intacct\RequestConfig;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\ControlBlock
  */
-class ControlBlockTest extends \PHPUnit\Framework\TestCase
+class ControlBlockTest extends TestCase
 {
 
     public function testWriteXmlDefaults(): void
@@ -62,7 +64,7 @@ EOF;
 
     public function testWriteXmlInvalidSenderId(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Sender ID is required and cannot be blank");
 
         $clientConfig = new ClientConfig();
@@ -74,7 +76,7 @@ EOF;
 
     public function testWriteXmlInvalidSenderPassword(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Sender Password is required and cannot be blank");
 
         $clientConfig = new ClientConfig();
@@ -122,7 +124,7 @@ EOF;
 
     public function testWriteXmlInvalidControlIdShort(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Request Control ID must be between 1 and 256 characters in length");
 
         $clientConfig = new ClientConfig();
@@ -137,7 +139,7 @@ EOF;
 
     public function testWriteXmlInvalidControlIdLong(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Request Control ID must be between 1 and 256 characters in length");
 
         $clientConfig = new ClientConfig();

@@ -23,14 +23,15 @@ use Intacct\ClientConfig;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\RequestConfig;
 use Intacct\Xml\RequestBlock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Logging\MessageFormatter
  */
-class MessageFormatterTest extends \PHPUnit\Framework\TestCase
+class MessageFormatterTest extends TestCase
 {
 
-    public function testRequestAndResponseRemoval()
+    public function testRequestAndResponseRemoval() : void
     {
         $clientConfig = new ClientConfig();
         $clientConfig->setSenderId('testsenderid');

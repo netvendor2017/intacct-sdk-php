@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\CashManagement;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionCreate
  */
-class ChargeCardTransactionCreateTest extends \PHPUnit\Framework\TestCase
+class ChargeCardTransactionCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -56,7 +58,7 @@ EOF;
 
         $record = new ChargeCardTransactionCreate('unittest');
         $record->setChargeCardId('AMEX1234');
-        $record->setTransactionDate(new \DateTime('2015-06-30'));
+        $record->setTransactionDate(new DateTime('2015-06-30'));
 
         $line1 = new ChargeCardTransactionLineCreate();
         $line1->setTransactionAmount(76343.43);
@@ -117,13 +119,13 @@ EOF;
 
         $record = new ChargeCardTransactionCreate('unittest');
         $record->setChargeCardId('AMEX1234');
-        $record->setTransactionDate(new \DateTime('2015-06-30'));
+        $record->setTransactionDate(new DateTime('2015-06-30'));
         $record->setReferenceNumber('321');
         $record->setPayee('Costco');
         $record->setDescription('Supplies');
         $record->setAttachmentsId('A1234');
         $record->setTransactionCurrency('USD');
-        $record->setExchangeRateDate(new \DateTime('2015-06-30'));
+        $record->setExchangeRateDate(new DateTime('2015-06-30'));
         $record->setExchangeRateType('Intacct Daily Rate');
         $record->setCustomFields([
             'customfield1' => 'customvalue1',
@@ -154,7 +156,7 @@ EOF;
 
         $record = new ChargeCardTransactionCreate('unittest');
         $record->setChargeCardId('AMEX1234');
-        $record->setTransactionDate(new \DateTime('2015-06-30'));
+        $record->setTransactionDate(new DateTime('2015-06-30'));
 
         $record->writeXml($xml);
     }

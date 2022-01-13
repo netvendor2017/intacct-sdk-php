@@ -18,11 +18,12 @@
 namespace Intacct\Functions\CashManagement;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionLineCreate
  */
-class ChargeCardTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
+class ChargeCardTransactionLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

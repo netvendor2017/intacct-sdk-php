@@ -17,10 +17,14 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResponseException;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\OnlineResponse
  */
-class OnlineResponseTest extends \PHPUnit\Framework\TestCase
+class OnlineResponseTest extends TestCase
 {
 
     public function testGetters(): void
@@ -66,7 +70,7 @@ EOF;
 
     public function testMissingOperationBlock(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Response is missing operation block");
 
         $xml = <<<EOF
@@ -86,7 +90,7 @@ EOF;
 
     public function testAuthenticationFailure(): void
     {
-        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectException(ResponseException::class);
         $this->expectExceptionMessage("Response authentication status failure - XL03000006 Sign-in information is incorrect");
 
         $xml = <<<EOF
@@ -122,7 +126,7 @@ EOF;
 
     public function testMissingAuthenticationBlock(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Authentication block is missing from operation element");
 
         $xml = <<<EOF
@@ -143,7 +147,7 @@ EOF;
 
     public function testMissingResultBlock(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Result block is missing from operation element");
 
         $xml = <<<EOF
@@ -173,7 +177,7 @@ EOF;
 
     public function testResponseExceptionWithErrors(): void
     {
-        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectException(ResponseException::class);
         $this->expectExceptionMessage("Response control status failure - PL04000055 This company is a demo company and has expired.");
 
         $xml = <<<EOF

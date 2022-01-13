@@ -19,11 +19,12 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryDelete
  */
-class StatisticalJournalEntryDeleteTest extends \PHPUnit\Framework\TestCase
+class StatisticalJournalEntryDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

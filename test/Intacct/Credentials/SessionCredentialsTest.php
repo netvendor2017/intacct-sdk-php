@@ -18,11 +18,13 @@
 namespace Intacct\Credentials;
 
 use Intacct\ClientConfig;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Credentials\SessionCredentials
  */
-class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
+class SessionCredentialsTest extends TestCase
 {
 
     /**
@@ -57,7 +59,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('https://p1.intacct.com/ia/xml/xmlgw.phtml', $endpoint->getUrl());
         $this->assertThat(
             $sessionCreds->getSenderCredentials(),
-            $this->isInstanceOf('Intacct\Credentials\SenderCredentials')
+            $this->isInstanceOf(SenderCredentials::class)
         );
     }
 
@@ -76,7 +78,7 @@ class SessionCredentialsTest extends \PHPUnit\Framework\TestCase
     public function testCredsFromArrayNoSession(): void
     {
         $this->expectExceptionMessage("Required Session ID not supplied in config");
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $config = new ClientConfig();
         $config->setSessionId('');

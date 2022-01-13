@@ -19,11 +19,12 @@ namespace Intacct\Functions\Purchasing;
 
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Purchasing\PurchasingTransactionLineCreate
  */
-class PurchasingTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
+class PurchasingTransactionLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

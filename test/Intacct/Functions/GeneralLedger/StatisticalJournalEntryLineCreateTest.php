@@ -18,11 +18,12 @@
 namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\StatisticalJournalEntryLineCreate
  */
-class StatisticalJournalEntryLineCreateTest extends \PHPUnit\Framework\TestCase
+class StatisticalJournalEntryLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -49,7 +50,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testDecreaseAmount()
+    public function testDecreaseAmount() : void
     {
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>

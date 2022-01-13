@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\ContactUpdate
  */
-class ContactUpdateTest extends \PHPUnit\Framework\TestCase
+class ContactUpdateTest extends TestCase
 {
 
     public function testConstruct(): void

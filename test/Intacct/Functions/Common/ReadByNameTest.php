@@ -18,11 +18,13 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use SplFixedArray;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadByName
  */
-class ReadByNameTest extends \PHPUnit\Framework\TestCase
+class ReadByNameTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -90,7 +92,7 @@ EOF;
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Names count cannot exceed 100");
 
-        $names = new \SplFixedArray(101);
+        $names = new SplFixedArray(101);
 
         $readByName = new ReadByName('unittest');
         $readByName->setNames($names->toArray());

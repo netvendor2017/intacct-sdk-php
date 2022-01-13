@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\GetList
  */
-class GetListTest extends \PHPUnit\Framework\TestCase
+class GetListTest extends TestCase
 {
 
     public function testDefaultConstruct(): void

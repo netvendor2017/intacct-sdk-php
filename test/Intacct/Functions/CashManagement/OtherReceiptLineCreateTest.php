@@ -18,11 +18,12 @@
 namespace Intacct\Functions\CashManagement;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\OtherReceiptLineCreate
  */
-class OtherReceiptLineCreateTest extends \PHPUnit\Framework\TestCase
+class OtherReceiptLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

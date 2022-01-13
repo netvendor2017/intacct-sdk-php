@@ -16,15 +16,18 @@
 
 namespace Intacct;
 
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\RequestConfig
  */
-class RequestConfigTest extends \PHPUnit\Framework\TestCase
+class RequestConfigTest extends TestCase
 {
 
     public function testInvalidEncoding(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Encoding \"invalid\" is not supported by the system");
 
         $config = new RequestConfig();
@@ -33,7 +36,7 @@ class RequestConfigTest extends \PHPUnit\Framework\TestCase
 
     public function testNegativeRetries(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Max Retries must be zero or greater");
 
         $config = new RequestConfig();
@@ -42,7 +45,7 @@ class RequestConfigTest extends \PHPUnit\Framework\TestCase
 
     public function testNegativeTimeout(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Max Timeout must be zero or greater");
 
         $config = new RequestConfig();
@@ -51,7 +54,7 @@ class RequestConfigTest extends \PHPUnit\Framework\TestCase
 
     public function testNoRetryServerErrorCodeNotInt(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("No Retry Server Error Code is not valid int type");
 
         $config = new RequestConfig();
@@ -62,7 +65,7 @@ class RequestConfigTest extends \PHPUnit\Framework\TestCase
 
     public function testNoRetryServerErrorCodeNot500(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("No Retry Server Error Codes must be between 500-599");
 
         $config = new RequestConfig();

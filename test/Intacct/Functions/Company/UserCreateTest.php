@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\UserCreate
  */
-class UserCreateTest extends \PHPUnit\Framework\TestCase
+class UserCreateTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -53,7 +54,7 @@ EOF;
 
         $record = new UserCreate('unittest');
         $record->setUserId('U1234');
-        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setUserType(AbstractUser::USER_TYPE_BUSINESS);
         $record->setLastName('Last');
         $record->setFirstName('First');
         $record->setPrimaryEmailAddress('noreply@intacct.com');
@@ -76,7 +77,7 @@ EOF;
 
         $record = new UserCreate('unittest');
         //$record->setUserId('U1234');
-        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setUserType(AbstractUser::USER_TYPE_BUSINESS);
         $record->setLastName('Last');
         $record->setFirstName('First');
         $record->setPrimaryEmailAddress('noreply@intacct.com');
@@ -118,7 +119,7 @@ EOF;
 
         $record = new UserCreate('unittest');
         $record->setUserId('U1234');
-        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setUserType(AbstractUser::USER_TYPE_BUSINESS);
         //$record->setLastName('Last');
         //$record->setFirstName('First');
         //$record->setPrimaryEmailAddress('noreply@intacct.com');
@@ -139,7 +140,7 @@ EOF;
 
         $record = new UserCreate('unittest');
         $record->setUserId('U1234');
-        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setUserType(AbstractUser::USER_TYPE_BUSINESS);
         $record->setLastName('Last');
         $record->setFirstName('First');
         //$record->setPrimaryEmailAddress('noreply@intacct.com');
@@ -205,7 +206,7 @@ EOF;
 
         $record = new UserCreate('unittest');
         $record->setUserId('U1234');
-        $record->setUserType(UserCreate::USER_TYPE_BUSINESS);
+        $record->setUserType(AbstractUser::USER_TYPE_BUSINESS);
         $record->setLastName('Last');
         $record->setFirstName('First');
         $record->setPrimaryEmailAddress('noreply@intacct.com');

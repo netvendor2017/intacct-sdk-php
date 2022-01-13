@@ -21,22 +21,24 @@ use Intacct\ClientConfig;
 use Intacct\Functions\Company\ApiSessionCreate;
 use Intacct\RequestConfig;
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\OperationBlock
  */
-class OperationBlockTest extends \PHPUnit\Framework\TestCase
+class OperationBlockTest extends TestCase
 {
 
     public function testWriteXmlSession(): void
     {
         $config = new ClientConfig();
         $config->setSessionId('fakesession..');
-        
+
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
         $contentBlock[] = $func;
-        
+
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <operation transaction="false">
@@ -73,7 +75,7 @@ EOF;
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
         $contentBlock[] = $func;
-        
+
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <operation transaction="false">
@@ -114,7 +116,7 @@ EOF;
         $contentBlock = [];
         $func = new ApiSessionCreate('unittest');
         $contentBlock[] = $func;
-        
+
         $expected = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <operation transaction="true">
@@ -143,7 +145,7 @@ EOF;
 
     public function testNoCredentials(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Authentication credentials [Company ID, User ID, and User Password] or [Session ID] are required and cannot be blank");
 
         $config = new ClientConfig();

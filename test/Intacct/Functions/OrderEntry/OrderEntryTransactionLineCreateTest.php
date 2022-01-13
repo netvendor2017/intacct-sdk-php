@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\OrderEntry;
 
+use DateTime;
 use Intacct\Functions\InventoryControl\TransactionItemDetail;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Intacct\Functions\InventoryControl\OrderEntryTransactionLineCreate
+ * @coversDefaultClass \Intacct\Functions\OrderEntry\OrderEntryTransactionLineCreate
  */
-class OrderEntryTransactionLineCreateTest extends \PHPUnit\Framework\TestCase
+class OrderEntryTransactionLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -126,8 +128,8 @@ EOF;
         $entry->setDiscountSurchargeMemo('None');
         $entry->setMemo('Memo');
         $entry->setRevRecTemplate('template');
-        $entry->setRevRecStartDate(new \DateTime('2015-06-30'));
-        $entry->setRevRecEndDate(new \DateTime('2015-07-31'));
+        $entry->setRevRecStartDate(new DateTime('2015-06-30'));
+        $entry->setRevRecEndDate(new DateTime('2015-07-31'));
         $entry->setRenewalMacro('Quarterly');
 
         $fulfillmentStatus = new FulfillmentStatusCreate();
@@ -197,7 +199,7 @@ EOF;
         $kitStatus = new KitStatusCreate();
         $kitStatus->setInvoicePrice(700.50);
         $kitStatus->setLineNo(14);
-        $kitStatus->setDeliveryDate(new \DateTime('2018/12/25'));
+        $kitStatus->setDeliveryDate(new DateTime('2018/12/25'));
         $kitStatus->setDeliveryStatus('Undelivered');
         $kitStatus->setDeferralStatus('Defer until item is delivered');
         $entry->setFulfillmentStatus($kitStatus);

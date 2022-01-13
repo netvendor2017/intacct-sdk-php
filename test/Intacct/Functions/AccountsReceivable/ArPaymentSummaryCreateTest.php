@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\ArPaymentSummaryCreate
  */
-class ArPaymentSummaryCreateTest extends \PHPUnit\Framework\TestCase
+class ArPaymentSummaryCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -50,7 +52,7 @@ EOF;
 
         $record = new ArPaymentSummaryCreate('unittest');
         $record->setTitle('unit test');
-        $record->setGlPostingDate(new \DateTime('2015-06-30'));
+        $record->setGlPostingDate(new DateTime('2015-06-30'));
 
         $record->writeXml($xml);
 

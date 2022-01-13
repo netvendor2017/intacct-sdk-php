@@ -20,11 +20,12 @@ namespace Intacct\Functions\Company;
 use Intacct\Xml\XMLWriter;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentFile
  */
-class AttachmentFileTest extends \PHPUnit\Framework\TestCase
+class AttachmentFileTest extends TestCase
 {
 
     /** @var vfsStreamDirectory */

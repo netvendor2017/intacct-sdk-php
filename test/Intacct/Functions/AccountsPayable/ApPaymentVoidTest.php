@@ -18,12 +18,12 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentVoid
  */
-class ApPaymentVoidTest extends \PHPUnit\Framework\TestCase
+class ApPaymentVoidTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -45,7 +45,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $classObj = (new ApPaymentFactory())->create(AbstractApPaymentFunction::VOID, 1234, 'unittest');
+        $classObj = ApPaymentFactory::create(AbstractApPaymentFunction::VOID, 1234, 'unittest');
 
         $classObj->writeXml($xml);
 

@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToNull
  */
-class EqualToNullTest extends \PHPUnit\Framework\TestCase
+class EqualToNullTest extends TestCase
 {
 
     public function testToString(): void

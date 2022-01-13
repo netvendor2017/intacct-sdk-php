@@ -17,15 +17,20 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
+use Intacct\Exception\ResponseException;
+use Intacct\Xml\Response\Control;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\AbstractResponse
  */
-class AbstractResponseTest extends \PHPUnit\Framework\TestCase
+class AbstractResponseTest extends TestCase
 {
 
     public function testConstructInvalidXml(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("XML could not be parsed properly");
 
         $xml = '<bad></xml>';
@@ -33,12 +38,12 @@ class AbstractResponseTest extends \PHPUnit\Framework\TestCase
         $args = [
             $xml,
         ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
+        $this->getMockForAbstractClass(AbstractResponse::class, $args);
     }
 
     public function testConstructMissingControlBlock(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Response is missing control block");
 
         $xml = <<<EOF
@@ -51,12 +56,12 @@ EOF;
         $args = [
             $xml,
         ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
+        $this->getMockForAbstractClass(AbstractResponse::class, $args);
     }
 
     public function testConstructControlFailure(): void
     {
-        $this->expectException(\Intacct\Exception\ResponseException::class);
+        $this->expectException(ResponseException::class);
         $this->expectExceptionMessage("Response control status failure - XL03000006 test is not a valid transport policy.");
 
         $xml = <<<EOF
@@ -83,7 +88,7 @@ EOF;
         $args = [
             $xml,
         ];
-        $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
+        $this->getMockForAbstractClass(AbstractResponse::class, $args);
     }
 
     public function testGetControl(): void
@@ -104,9 +109,9 @@ EOF;
         $args = [
             $xml,
         ];
-        $stub = $this->getMockForAbstractClass('Intacct\Xml\AbstractResponse', $args);
-        $this->assertThat($stub, $this->isInstanceOf('Intacct\Xml\AbstractResponse'));
+        $stub = $this->getMockForAbstractClass(AbstractResponse::class, $args);
+        $this->assertThat($stub, $this->isInstanceOf(AbstractResponse::class));
         $control = $stub->getControl();
-        $this->assertThat($control, $this->isInstanceOf('Intacct\Xml\Response\Control'));
+        $this->assertThat($control, $this->isInstanceOf(Control::class));
     }
 }

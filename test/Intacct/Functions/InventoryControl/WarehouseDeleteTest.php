@@ -19,11 +19,12 @@ namespace Intacct\Functions\InventoryControl;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\WarehouseDelete
  */
-class WarehouseDeleteTest extends \PHPUnit\Framework\TestCase
+class WarehouseDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

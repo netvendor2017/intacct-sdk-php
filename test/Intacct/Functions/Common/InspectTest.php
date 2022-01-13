@@ -17,11 +17,12 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Inspect
  */
-class InspectTest extends \PHPUnit\Framework\TestCase
+class InspectTest extends TestCase
 {
 
     public function testDefaultParams(): void

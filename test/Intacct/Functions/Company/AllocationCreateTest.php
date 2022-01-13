@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AllocationCreate
  */
-class AllocationCreateTest extends \PHPUnit\Framework\TestCase
+class AllocationCreateTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -48,7 +49,7 @@ EOF;
 
         $record = new AllocationCreate('unittest');
         $record->setAllocationId('SPLIT60-40');
-        $record->setAllocateBy(AllocationCreate::ALLOCATE_BY_PERCENTAGE);
+        $record->setAllocateBy(AbstractAllocation::ALLOCATE_BY_PERCENTAGE);
 
         $record->writeXml($xml);
 
@@ -68,7 +69,7 @@ EOF;
 
         $record = new AllocationCreate('unittest');
         //$record->setAllocationId('SPLIT60-40');
-        $record->setAllocateBy(AllocationCreate::ALLOCATE_BY_PERCENTAGE);
+        $record->setAllocateBy(AbstractAllocation::ALLOCATE_BY_PERCENTAGE);
 
         $record->writeXml($xml);
     }

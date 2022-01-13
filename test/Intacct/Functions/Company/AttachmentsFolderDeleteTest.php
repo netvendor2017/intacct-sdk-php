@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AttachmentsFolderDelete
  */
-class AttachmentsFolderDeleteTest extends \PHPUnit\Framework\TestCase
+class AttachmentsFolderDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

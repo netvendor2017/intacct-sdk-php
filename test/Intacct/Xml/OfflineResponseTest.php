@@ -17,10 +17,13 @@
 
 namespace Intacct\Xml;
 
+use Intacct\Exception\IntacctException;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\OfflineResponse
  */
-class OfflineResponseTest extends \PHPUnit\Framework\TestCase
+class OfflineResponseTest extends TestCase
 {
 
     public function testGetAcknowledgement(): void
@@ -46,7 +49,7 @@ EOF;
 
     public function testMissingAcknowledgementBlock(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Response is missing acknowledgement block");
 
         $xml = <<<EOF
@@ -66,7 +69,7 @@ EOF;
 
     public function testMissingStatusElement(): void
     {
-        $this->expectException(\Intacct\Exception\IntacctException::class);
+        $this->expectException(IntacctException::class);
         $this->expectExceptionMessage("Acknowledgement block is missing status element");
 
         $xml = <<<EOF

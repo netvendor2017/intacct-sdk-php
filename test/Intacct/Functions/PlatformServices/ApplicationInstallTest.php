@@ -18,11 +18,12 @@ namespace Intacct\Functions\PlatformServices;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\PlatformServices\ApplicationInstall
  */
-class ApplicationInstallTest extends \PHPUnit\Framework\TestCase
+class ApplicationInstallTest extends TestCase
 {
 
     public function testRequiredXmlFilename(): void

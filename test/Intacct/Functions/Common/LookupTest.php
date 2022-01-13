@@ -18,8 +18,9 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class LookupTest extends \PHPUnit\Framework\TestCase
+class LookupTest extends TestCase
 {
 
     public function testGenerateXml(): void

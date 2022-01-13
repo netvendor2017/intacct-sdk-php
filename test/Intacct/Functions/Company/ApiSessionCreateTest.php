@@ -18,11 +18,12 @@
 namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\ApiSessionCreate
  */
-class ApiSessionCreateTest extends \PHPUnit\Framework\TestCase
+class ApiSessionCreateTest extends TestCase
 {
 
     /**

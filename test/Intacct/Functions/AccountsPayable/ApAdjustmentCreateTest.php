@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentCreate
  */
-class ApAdjustmentCreateTest extends \PHPUnit\Framework\TestCase
+class ApAdjustmentCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -56,7 +58,7 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new \DateTime('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateTime('2015-06-30'));
 
         $line1 = new BillLineCreate();
         $line1->setTransactionAmount(76343.43);
@@ -126,8 +128,8 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new \DateTime('2015-06-30'));
-        $apAdjustment->setGlPostingDate(new \DateTime('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateTime('2015-06-30'));
+        $apAdjustment->setGlPostingDate(new DateTime('2015-06-30'));
         $apAdjustment->setSummaryRecordNo(20323);
         $apAdjustment->setAdjustmentNumber('234');
         $apAdjustment->setAction('Submit');
@@ -136,7 +138,7 @@ EOF;
         $apAdjustment->setExternalId('20394');
         $apAdjustment->setBaseCurrency('USD');
         $apAdjustment->setTransactionCurrency('USD');
-        $apAdjustment->setExchangeRateDate(new \DateTime('2015-06-30'));
+        $apAdjustment->setExchangeRateDate(new DateTime('2015-06-30'));
         $apAdjustment->setExchangeRateType('Intacct Daily Rate');
         $apAdjustment->setDoNotPostToGL(false);
         $apAdjustment->setAttachmentsId('6942');
@@ -169,7 +171,7 @@ EOF;
 
         $apAdjustment = new ApAdjustmentCreate('unittest');
         $apAdjustment->setVendorId('VENDOR1');
-        $apAdjustment->setTransactionDate(new \DateTime('2015-06-30'));
+        $apAdjustment->setTransactionDate(new DateTime('2015-06-30'));
 
         $apAdjustment->writeXml($xml);
     }

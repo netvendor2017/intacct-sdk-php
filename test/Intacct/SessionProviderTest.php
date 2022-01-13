@@ -17,14 +17,14 @@
 
 namespace Intacct;
 
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Handler\MockHandler;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\SessionProvider
  */
-class SessionProviderTest extends \PHPUnit\Framework\TestCase
+class SessionProviderTest extends TestCase
 {
 
     public function testFromLoginCredentials(): void
@@ -76,7 +76,7 @@ EOF;
         $config->setCompanyId('testcompany');
         $config->setUserId('testuser');
         $config->setUserPassword('testpass');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 
@@ -137,7 +137,7 @@ EOF;
         $config->setEntityId('testentity');
         $config->setUserId('testuser');
         $config->setUserPassword('testpass');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 
@@ -196,7 +196,7 @@ EOF;
         $config->setSenderPassword('pass123!');
         $config->setSessionId('fAkESesSiOnId..');
         $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 
@@ -259,7 +259,7 @@ EOF;
         $config->setSessionId('fAkESesSiOnId..');
         $config->setEntityId('testentity');
         $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 
@@ -322,7 +322,7 @@ EOF;
         $config->setSessionId('EntityAsession..');
         $config->setEntityId('entityB');
         $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 
@@ -386,7 +386,7 @@ EOF;
         $config = new ClientConfig();
         $config->setSessionId('fAkESesSiOnId..');
         $config->setEndpointUrl('https://unittest.intacct.com/ia/xml/xmlgw.phtml');
-        $config->setRequestHandler(HandlerStack::create($mock));
+        $config->setMockHandler($mock);
 
         $sessionCreds = SessionProvider::factory($config);
 

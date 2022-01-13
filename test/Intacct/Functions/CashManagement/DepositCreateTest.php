@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\CashManagement;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\DepositCreate
  */
-class DepositCreateTest extends \PHPUnit\Framework\TestCase
+class DepositCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -54,7 +56,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new \DateTime('2015-06-30'));
+        $deposit->setDepositDate(new DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setTransactionKeysToDeposit([
             1234,
@@ -101,7 +103,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new \DateTime('2015-06-30'));
+        $deposit->setDepositDate(new DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
         $deposit->setDescription('Desc');
         $deposit->setAttachmentsId('AT111');
@@ -130,7 +132,7 @@ EOF;
 
         $deposit = new DepositCreate('unittest');
         $deposit->setBankAccountId('BA1145');
-        $deposit->setDepositDate(new \DateTime('2015-06-30'));
+        $deposit->setDepositDate(new DateTime('2015-06-30'));
         $deposit->setDepositSlipId('Deposit Slip 2015-06-30');
 
         $deposit->writeXml($xml);

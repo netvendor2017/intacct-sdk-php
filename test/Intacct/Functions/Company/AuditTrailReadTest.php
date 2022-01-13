@@ -18,11 +18,12 @@
 namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\AuditTrailRead
  */
-class AuditTrailReadTest extends \PHPUnit\Framework\TestCase
+class AuditTrailReadTest extends TestCase
 {
 
     public function testConstruct(): void

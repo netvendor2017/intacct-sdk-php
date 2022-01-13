@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\EqualTo;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\EqualTo\EqualToString
  */
-class EqualToStringTest extends \PHPUnit\Framework\TestCase
+class EqualToStringTest extends TestCase
 {
 
     public function testToString(): void
@@ -45,7 +47,7 @@ class EqualToStringTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, (string)$condition);
     }
 
-    public function testToStringEscapeQuotes()
+    public function testToStringEscapeQuotes() : void
     {
         $condition = new EqualToString();
         $condition->setField('VENDORNAME');

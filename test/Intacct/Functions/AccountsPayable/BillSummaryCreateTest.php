@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\BillSummaryCreate
  */
-class BillSummaryCreateTest extends \PHPUnit\Framework\TestCase
+class BillSummaryCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -50,14 +52,14 @@ EOF;
 
         $record = new BillSummaryCreate('unittest');
         $record->setTitle('unit test');
-        $record->setGlPostingDate(new \DateTime('2015-06-30'));
+        $record->setGlPostingDate(new DateTime('2015-06-30'));
 
         $record->writeXml($xml);
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testMissingTitle()
+    public function testMissingTitle() : void
     {
         $this->expectExceptionMessage("Title is required for create");
         $this->expectException(InvalidArgumentException::class);
@@ -73,7 +75,7 @@ EOF;
         $record->writeXml($xml);
     }
 
-    public function testMissingDate()
+    public function testMissingDate() : void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("GL Posting Date is required for create");

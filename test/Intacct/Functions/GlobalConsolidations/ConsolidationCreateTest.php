@@ -17,11 +17,12 @@
 namespace Intacct\Functions\GlobalConsolidations;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GlobalConsolidations\ConsolidationCreate
  */
-class ConsolidationCreateTest extends \PHPUnit\Framework\TestCase
+class ConsolidationCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

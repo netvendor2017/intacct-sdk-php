@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common;
 use Intacct\Functions\Common\Query\QueryString;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadByQuery
  */
-class ReadByQueryTest extends \PHPUnit\Framework\TestCase
+class ReadByQueryTest extends TestCase
 {
 
     public function testDefaultParams(): void

@@ -19,11 +19,12 @@ namespace Intacct\Xml;
 
 use Intacct\ClientConfig;
 use Intacct\RequestConfig;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\RequestBlock
  */
-class RequestBlockTest extends \PHPUnit\Framework\TestCase
+class RequestBlockTest extends TestCase
 {
 
     public function testWriteXml(): void

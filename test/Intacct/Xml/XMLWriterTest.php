@@ -17,10 +17,13 @@
 
 namespace Intacct\Xml;
 
+use DateTime;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Xml\XMLWriter
  */
-class XMLWriterTest extends \PHPUnit\Framework\TestCase
+class XMLWriterTest extends TestCase
 {
 
     public function testWriteElement(): void
@@ -55,7 +58,7 @@ EOF;
         $xml->startDocument();
 
         $xml->writeElement('report', null, true);
-        $xml->writeElement('hello', null);
+        $xml->writeElement('hello');
 
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
@@ -91,7 +94,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $date = new \DateTime("2016-03-01");
+        $date = new DateTime("2016-03-01");
 
         $xml->writeElementDate('billdate', $date);
 
@@ -111,7 +114,7 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $dateTime = new \DateTime("2016-03-01T12:30:59");
+        $dateTime = new DateTime("2016-03-01T12:30:59");
 
         $xml->writeElementDateTime('createdAt', $dateTime);
 
@@ -152,11 +155,11 @@ EOF;
         $xml->setIndentString('    ');
         $xml->startDocument();
 
-        $date = new \DateTime("2016-03-01");
+        $date = new DateTime("2016-03-01");
 
         $xml->startElement("date");
 
-        $xml->writeDateSplitElements($date, true);
+        $xml->writeDateSplitElements($date);
 
         $xml->endElement();
 

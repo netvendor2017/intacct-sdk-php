@@ -16,17 +16,20 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo;
 
+use DateTime;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\GreaterThanOrEqualTo\GreaterThanOrEqualToDate
  */
-class GreaterThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
+class GreaterThanOrEqualToDateTest extends TestCase
 {
 
     public function testToString(): void
     {
         $condition = new GreaterThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
 
@@ -39,7 +42,7 @@ class GreaterThanOrEqualToDateTest extends \PHPUnit\Framework\TestCase
     {
         $condition = new GreaterThanOrEqualToDate();
         $condition->setField('CUSTOMDATE');
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setDate(2016, 12, 31);
         $condition->setValue($date);
         $condition->setNegate(true);

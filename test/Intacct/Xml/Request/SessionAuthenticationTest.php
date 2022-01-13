@@ -17,11 +17,13 @@
 namespace Intacct\Xml\Request;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Xml\Request\SessionAuthentication
  */
-class SessionAuthenticationTest extends \PHPUnit\Framework\TestCase
+class SessionAuthenticationTest extends TestCase
 {
 
     public function testWriteXml(): void
@@ -47,7 +49,7 @@ EOF;
 
     public function testInvalidSession(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Session ID is required and cannot be blank");
 
         new SessionAuthentication('');

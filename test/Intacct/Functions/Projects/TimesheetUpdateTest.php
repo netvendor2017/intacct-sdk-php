@@ -17,9 +17,11 @@
 
 namespace Intacct\Functions\Projects;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class TimesheetUpdateTest extends \PHPUnit\Framework\TestCase
+class TimesheetUpdateTest extends TestCase
 {
 
     public function testParams(): void
@@ -53,11 +55,11 @@ EOF;
         $record = new TimesheetUpdate('unittest');
         $record->setRecordNo('1234');
         $record->setEmployeeId('E1234');
-        $record->setBeginDate(new \DateTime('2016-06-30'));
+        $record->setBeginDate(new DateTime('2016-06-30'));
 
         $entry1 = new TimesheetEntryUpdate();
         $entry1->setLineRecordNo('1');
-        $entry1->setEntryDate(new \DateTime('2016-06-30'));
+        $entry1->setEntryDate(new DateTime('2016-06-30'));
         $entry1->setQuantity(5);
 
         $record->setEntries([

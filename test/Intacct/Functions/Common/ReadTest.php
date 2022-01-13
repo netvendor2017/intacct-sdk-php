@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Read
  */
-class ReadTest extends \PHPUnit\Framework\TestCase
+class ReadTest extends TestCase
 {
 
     public function testDefaultParams(): void

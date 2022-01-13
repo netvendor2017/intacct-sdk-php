@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\LessThanOrEqualTo\LessThanOrEqualToInteger
  */
-class LessThanOrEqualToIntegerTest extends \PHPUnit\Framework\TestCase
+class LessThanOrEqualToIntegerTest extends TestCase
 {
 
     public function testToString(): void

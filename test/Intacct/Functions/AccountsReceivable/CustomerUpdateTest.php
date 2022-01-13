@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsReceivable;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\CustomerUpdate
  */
-class CustomerUpdateTest extends \PHPUnit\Framework\TestCase
+class CustomerUpdateTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -202,7 +203,7 @@ EOF;
         $record->setPrimaryContactName('primary');
         $record->setBillToContactName('bill to');
         $record->setShipToContactName('ship to');
-        $record->setRestrictionType(CustomerUpdate::RESTRICTION_TYPE_RESTRICTED);
+        $record->setRestrictionType(AbstractCustomer::RESTRICTION_TYPE_RESTRICTED);
         $record->setRestrictedLocations([
             '100',
             '200',

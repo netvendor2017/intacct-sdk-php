@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAccountLabelCreate
  */
-class ApAccountLabelCreateTest extends \PHPUnit\Framework\TestCase
+class ApAccountLabelCreateTest extends TestCase
 {
 
     public function testConstruct(): void

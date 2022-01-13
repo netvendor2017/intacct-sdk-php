@@ -19,11 +19,12 @@ namespace Intacct\Functions\EmployeeExpense;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseAdjustmentDelete
  */
-class ExpenseAdjustmentDeleteTest extends \PHPUnit\Framework\TestCase
+class ExpenseAdjustmentDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

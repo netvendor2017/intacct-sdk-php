@@ -17,11 +17,12 @@
 namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\UserPermissionsRead
  */
-class UserPermissionsReadTest extends \PHPUnit\Framework\TestCase
+class UserPermissionsReadTest extends TestCase
 {
 
     public function testDefaultParams(): void

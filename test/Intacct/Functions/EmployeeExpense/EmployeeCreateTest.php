@@ -19,11 +19,12 @@ namespace Intacct\Functions\EmployeeExpense;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\EmployeeCreate
  */
-class EmployeeCreateTest extends \PHPUnit\Framework\TestCase
+class EmployeeCreateTest extends TestCase
 {
 
     public function testConstruct(): void

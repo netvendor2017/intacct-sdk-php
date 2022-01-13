@@ -19,6 +19,7 @@ namespace Intacct\Xml;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Handler\MockHandler;
 use Intacct\ClientConfig;
 use Intacct\Credentials\Endpoint;
 use Intacct\Credentials\SessionCredentials;
@@ -186,11 +187,6 @@ class RequestHandler
     }
 
     /**
-     * @var HandlerStack
-     */
-    private $handler;
-
-    /**
      * @param \XMLWriter $xml
      *
      * @return ResponseInterface
@@ -228,58 +224,59 @@ class RequestHandler
 
         // Prevents looped executions from trying to re-setup all these middlewares,
         // causing invalid arg ex on before(http_errors) calls
-        if ($this->handler === null) {
-            $handler = $this->getClientConfig()->getRequestHandler();
-            if ($handler === null) {
-                $handler = HandlerStack::create();
-            }
-
-            //add the retry logic before the http_errors middleware
-            $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
-
-            // replace the http_errors middleware with our own to process XML responses before HTTP errors
-            $handler->before(
-                'http_errors',
-                function (callable $handler) {
-                    return function ($request, array $options) use ($handler) {
-                        return $handler($request, $options)->then(
-                            function (ResponseInterface $response) use ($request, $handler) {
-                                $code = $response->getStatusCode();
-                                if ($code < 400) {
-                                    return $response;
-                                }
-                                $contentType = trim($response->getHeaderLine('content-type'));
-                                if (\stripos($contentType, '/xml') !== false) {
-                                    return $response;
-                                }
-
-                                throw RequestException::create($request, $response);
-                            }
-                        );
-                    };
-                },
-                'xml_and_http_errors'
-            );
-            $handler->remove('http_errors');
-
-            //push the history middleware to the top of the stack
-            $handler->push(Middleware::history($this->history));
-
-            if ($this->getClientConfig()->getLogger()) {
-                //push the logger middleware to the top of the stack
-                $handler->push(
-                    Middleware::log(
-                        $this->getClientConfig()->getLogger(),
-                        $this->getClientConfig()->getLogMessageFormatter(),
-                        $this->getClientConfig()->getLogLevel()
-                    )
-                );
-            }
-
-            $this->handler = $handler;
+        if ($this->getClientConfig()->getMockHandler() instanceof MockHandler) {
+            $handler = HandlerStack::create($this->getClientConfig()->getMockHandler());
+        } else {
+            $handler = HandlerStack::create();
         }
 
-        return (new Client(['handler' => $this->handler]))
+        //add the retry logic before the http_errors middleware
+        $handler->before('http_errors', Middleware::retry($decider), 'retry_logic');
+
+        // replace the http_errors middleware with our own to process XML responses before HTTP errors
+        $handler->before(
+            'http_errors',
+            function (callable $handler) {
+                return function ($request, array $options) use ($handler) {
+                    return $handler($request, $options)->then(
+                        function (ResponseInterface $response) use ($request, $handler) {
+                            $code = $response->getStatusCode();
+                            if ($code < 400) {
+                                return $response;
+                            }
+                            $contentType = trim($response->getHeaderLine('content-type'));
+                            if (\stripos($contentType, '/xml') !== false) {
+                                return $response;
+                            }
+
+                            throw RequestException::create($request, $response);
+                        }
+                    );
+                };
+            },
+            'xml_and_http_errors'
+        );
+        $handler->remove('http_errors');
+
+        //push the history middleware to the top of the stack
+        $handler->push(Middleware::history($this->history));
+
+        foreach ($this->getClientConfig()->getRequestMiddleware() as $middleware) {
+            $handler->push($middleware);
+        }
+
+        if ($this->getClientConfig()->getLogger()) {
+            //push the logger middleware to the top of the stack
+            $handler->push(
+                Middleware::log(
+                    $this->getClientConfig()->getLogger(),
+                    $this->getClientConfig()->getLogMessageFormatter(),
+                    $this->getClientConfig()->getLogLevel()
+                )
+            );
+        }
+
+        return (new Client(['handler' => $handler]))
             ->post($this->getEndpointUrl(), [
                 'body' => $xml->flush(),
                 'headers' => [

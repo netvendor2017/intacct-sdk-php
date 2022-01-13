@@ -19,11 +19,12 @@ namespace Intacct\Functions\Company;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Company\LocationDelete
  */
-class LocationDeleteTest extends \PHPUnit\Framework\TestCase
+class LocationDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

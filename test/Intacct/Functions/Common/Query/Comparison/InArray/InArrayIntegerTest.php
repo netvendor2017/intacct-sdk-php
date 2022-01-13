@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\InArray;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\InArray\InArrayInteger
  */
-class InArrayIntegerTest extends \PHPUnit\Framework\TestCase
+class InArrayIntegerTest extends TestCase
 {
 
     public function testToString(): void

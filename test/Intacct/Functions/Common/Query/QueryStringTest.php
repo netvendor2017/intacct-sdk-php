@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\QueryString
  */
-class QueryStringTest extends \PHPUnit\Framework\TestCase
+class QueryStringTest extends TestCase
 {
 
     public function testConstructorToString(): void

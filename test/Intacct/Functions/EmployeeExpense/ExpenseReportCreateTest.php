@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\EmployeeExpense;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\EmployeeExpense\ExpenseReportCreate
  */
-class ExpenseReportCreateTest extends \PHPUnit\Framework\TestCase
+class ExpenseReportCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -55,7 +57,7 @@ EOF;
 
         $expense = new ExpenseReportCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new \DateTime('2015-06-30'));
+        $expense->setTransactionDate(new DateTime('2015-06-30'));
 
         $line1 = new ExpenseReportLineCreate();
 
@@ -117,8 +119,8 @@ EOF;
 
         $expense = new ExpenseReportCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new \DateTime('2015-06-30'));
-        $expense->setGlPostingDate(new \DateTime('2015-06-30'));
+        $expense->setTransactionDate(new DateTime('2015-06-30'));
+        $expense->setGlPostingDate(new DateTime('2015-06-30'));
         $expense->setSummaryRecordNo('123');
         $expense->setExpenseReportNumber('ER001');
         $expense->setAction('Submitted');
@@ -155,7 +157,7 @@ EOF;
 
         $expense = new ExpenseReportCreate('unittest');
         $expense->setEmployeeId('E0001');
-        $expense->setTransactionDate(new \DateTime('2015-06-30'));
+        $expense->setTransactionDate(new DateTime('2015-06-30'));
 
         $expense->writeXml($xml);
     }

@@ -19,11 +19,12 @@ namespace Intacct\Functions\Projects;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\ProjectDelete
  */
-class ProjectDeleteTest extends \PHPUnit\Framework\TestCase
+class ProjectDeleteTest extends TestCase
 {
 
     public function testConstruct(): void

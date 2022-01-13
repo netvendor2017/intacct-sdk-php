@@ -18,11 +18,12 @@
 namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApAdjustmentLineCreate
  */
-class ApAdjustmentLineCreateTest extends \PHPUnit\Framework\TestCase
+class ApAdjustmentLineCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

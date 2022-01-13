@@ -19,8 +19,9 @@ namespace Intacct\Functions\Projects;
 
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
-class TimesheetDeclineTest extends \PHPUnit\Framework\TestCase
+class TimesheetDeclineTest extends TestCase
 {
 
     public function testConstruct(): void

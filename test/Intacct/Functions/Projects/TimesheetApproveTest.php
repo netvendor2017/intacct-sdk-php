@@ -18,11 +18,12 @@
 namespace Intacct\Functions\Projects;
 
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Projects\TimesheetApprove
  */
-class TimesheetApproveTest extends \PHPUnit\Framework\TestCase
+class TimesheetApproveTest extends TestCase
 {
 
     public function testConstruct(): void

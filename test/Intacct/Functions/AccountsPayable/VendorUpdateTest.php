@@ -19,11 +19,12 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\VendorUpdate
  */
-class VendorUpdateTest extends \PHPUnit\Framework\TestCase
+class VendorUpdateTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -207,7 +208,7 @@ EOF;
         $record->setAchBankAccountClass('CTX');
         $record->setVendorAccountNo('9999999');
         $record->setLocationAssignedAccountNoDisplayedOnCheckStub(false);
-        $record->setRestrictionType(VendorUpdate::RESTRICTION_TYPE_RESTRICTED);
+        $record->setRestrictionType(AbstractVendor::RESTRICTION_TYPE_RESTRICTED);
         $record->setRestrictedLocations([
             '100',
             '200',
@@ -225,7 +226,7 @@ EOF;
         $this->assertXmlStringEqualsXmlString($expected, $xml->flush());
     }
 
-    public function testRequiredName()
+    public function testRequiredName() : void
     {
         $this->expectExceptionMessage("Vendor ID is required for update");
         $this->expectException(InvalidArgumentException::class);

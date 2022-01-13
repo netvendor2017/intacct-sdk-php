@@ -19,11 +19,12 @@ namespace Intacct\Functions\GeneralLedger;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\GeneralLedger\AccountUpdate
  */
-class AccountUpdateTest extends \PHPUnit\Framework\TestCase
+class AccountUpdateTest extends TestCase
 {
 
     public function testConstruct(): void

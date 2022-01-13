@@ -19,11 +19,12 @@ namespace Intacct\Functions\Common\GetList;
 
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\GetList\ExpressionFilter
  */
-class ExpressionFilterTest extends \PHPUnit\Framework\TestCase
+class ExpressionFilterTest extends TestCase
 {
 
     public function testDefaultConstruct(): void

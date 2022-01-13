@@ -17,11 +17,13 @@
 namespace Intacct\Functions\Common;
 
 use Intacct\Xml\XMLWriter;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\Common\ReadReport
  */
-class ReadReportTest extends \PHPUnit\Framework\TestCase
+class ReadReportTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -86,7 +88,7 @@ EOF;
 
     public function testNoReport(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Report Name is required for read report");
 
         $xml = new XMLWriter();
@@ -103,7 +105,7 @@ EOF;
 
     public function testMinPageSize(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Page Size cannot be less than 1");
 
         $readReport = new ReadReport('unittest');
@@ -113,7 +115,7 @@ EOF;
 
     public function testMaxPageSize(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Page Size cannot be greater than 1000");
 
         $readReport = new ReadReport('unittest');
@@ -123,7 +125,7 @@ EOF;
 
     public function testMinWaitTime(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Wait Time cannot be less than 0");
 
         $readReport = new ReadReport('unittest');
@@ -132,7 +134,7 @@ EOF;
 
     public function testMaxWaitTime(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Wait Time cannot be greater than 30");
 
         $readReport = new ReadReport('unittest');

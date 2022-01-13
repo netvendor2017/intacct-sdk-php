@@ -17,13 +17,13 @@
 
 namespace Intacct\Functions\AccountsReceivable;
 
-use Intacct\Functions\AbstractFunction;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsReceivable\InvoiceLineTaxEntriesCreate
  */
-class InvoiceLineTaxEntriesCreateTest extends \PHPUnit\Framework\TestCase
+class InvoiceLineTaxEntriesCreateTest extends TestCase
 {
 
     public function testDefaultParams(): void

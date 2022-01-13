@@ -17,12 +17,14 @@
 
 namespace Intacct\Functions\InventoryControl;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\InventoryControl\TransactionItemDetail
  */
-class TransactionItemDetailTest extends \PHPUnit\Framework\TestCase
+class TransactionItemDetailTest extends TestCase
 {
 
     public function testDefaultParams(): void
@@ -49,7 +51,7 @@ EOF;
         $itemDetail = new TransactionItemDetail();
         $itemDetail->setQuantity(5523);
         $itemDetail->setLotNumber('223');
-        $itemDetail->setItemExpiration(new \DateTime('2017-12-31'));
+        $itemDetail->setItemExpiration(new DateTime('2017-12-31'));
 
         $itemDetail->writeXml($xml);
 

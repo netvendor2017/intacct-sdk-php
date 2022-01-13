@@ -17,13 +17,15 @@
 
 namespace Intacct\Functions\CashManagement;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\CashManagement\ChargeCardTransactionReverse
  */
-class ChargeCardTransactionReverseTest extends \PHPUnit\Framework\TestCase
+class ChargeCardTransactionReverseTest extends TestCase
 {
 
     public function testConstruct(): void
@@ -49,7 +51,7 @@ EOF;
 
         $record = new ChargeCardTransactionReverse('unittest');
         $record->setRecordNo(1234);
-        $record->setReverseDate(new \DateTime('2015-06-30'));
+        $record->setReverseDate(new DateTime('2015-06-30'));
 
         $record->writeXml($xml);
 

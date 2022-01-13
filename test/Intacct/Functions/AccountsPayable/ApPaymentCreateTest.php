@@ -17,13 +17,14 @@
 
 namespace Intacct\Functions\AccountsPayable;
 
+use DateTime;
 use Intacct\Xml\XMLWriter;
-use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Intacct\Functions\AccountsPayable\ApPaymentCreate
  */
-class ApPaymentCreateTest extends \PHPUnit\Framework\TestCase
+class ApPaymentCreateTest extends TestCase
 {
 
     public function testGenerateXmlForBill(): void
@@ -66,7 +67,7 @@ EOF;
         $info->financialEntityId = 'BA1143';
         $info->vendorId = 'V0001';
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -120,7 +121,7 @@ EOF;
         $info->vendorId = 'V0001';
         $info->documentNo = "12345";
         $info->paymentMethod = $info::PAYMENT_METHOD_RECORD_TRANSFER;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -163,7 +164,7 @@ EOF;
 
         $line1 = new ApPaymentDetailBillInfo();
         $line1->recordNo = 123;
-        $line1->applyToDiscountDate = new \DateTime('2015-06-29');
+        $line1->applyToDiscountDate = new DateTime('2015-06-29');
         $line1->paymentAmount = 294;
 
         $detailBuilder->addApPaymentDetailBill($line1);
@@ -172,7 +173,7 @@ EOF;
         $info->financialEntityId = 'BA1143';
         $info->vendorId = 'V0001';
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -242,7 +243,7 @@ EOF;
         $info->financialEntityId = 'BA1143';
         $info->vendorId = 'V0001';
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -330,7 +331,7 @@ EOF;
         $info->financialEntityId = 'BA1143';
         $info->vendorId = 'V0001';
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -372,7 +373,6 @@ EOF;
         $xml->startDocument();
 
         $detailBuilder = new ApPaymentDetailBuilder();
-        $lineNumber = null;
         $line1 = new ApPaymentDetailBillInfo();
         $line1->recordNo = 3693;
         $line1->paymentAmount = 8.8;
@@ -389,7 +389,7 @@ EOF;
         $info->financialEntityId = 'BOA';
         $info->vendorId = 'a4';
         $info->paymentMethod = $info::PAYMENT_METHOD_CASH;
-        $info->paymentDate = new \DateTime('2020-10-06');
+        $info->paymentDate = new DateTime('2020-10-06');
         $info->transactionCurrency = 'USD';
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
@@ -429,7 +429,6 @@ EOF;
         $xml->startDocument();
 
         $detailBuilder = new ApPaymentDetailBuilder();
-        $lineNumber = null;
         $line1 = new ApPaymentDetailBillInfo();
         $line1->recordNo = 123;
         $line1->paymentAmount = 100.12;
@@ -440,7 +439,7 @@ EOF;
         $info->financialEntityId = 'BA1143';
         $info->vendorId = 'V0001';
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
-        $info->paymentDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
         $info->apPaymentDetails = $detailBuilder->getApPaymentDetailList();
 
         $payment = new ApPaymentCreate($info, 'unittest');
@@ -488,7 +487,6 @@ EOF;
         $xml->startDocument();
 
         $detailBuilder = new ApPaymentDetailBuilder();
-        $lineNumber = null;
         $line1 = new ApPaymentDetailBillInfo();
         $line1->recordNo = 123;
         $line1->discountToApply = 1.21;
@@ -503,8 +501,8 @@ EOF;
         $info->memo = "Memo";
         $info->paymentMethod = $info::PAYMENT_METHOD_CHECK;
         $info->groupPayments = true;
-        $info->paymentDate = new \DateTime('2015-06-30');
-        $info->exchangeRateDate = new \DateTime('2015-06-30');
+        $info->paymentDate = new DateTime('2015-06-30');
+        $info->exchangeRateDate = new DateTime('2015-06-30');
         $info->exchangeRateType = "Intacct Daily Rate";
         $info->mergeOption = "vendorpref";
         $info->documentNo = "10000";

@@ -16,10 +16,12 @@
 
 namespace Intacct\Functions\Common\Query\Comparison\Like;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @coversDefaultClass \Intacct\Functions\Common\Query\Comparison\Like\LikeString
  */
-class LikeStringTest extends \PHPUnit\Framework\TestCase
+class LikeStringTest extends TestCase
 {
 
     public function testToString(): void
