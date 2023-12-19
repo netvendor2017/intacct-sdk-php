@@ -232,6 +232,9 @@ abstract class AbstractVendor extends AbstractFunction
     /** @var array */
     protected $restrictedDepartments = [];
 
+    /** @var array */
+    protected $vendorDesignations = [];
+
     /**
      * Get vendor ID
      *
@@ -1500,6 +1503,38 @@ abstract class AbstractVendor extends AbstractFunction
     public function setRestrictedDepartments($restrictedDepartments)
     {
         $this->restrictedDepartments = $restrictedDepartments;
+    }
+
+    /**
+     * Get vendor designations (DEI)
+     *
+     * @return array
+     */
+    public function getVendorDesignations() : array
+    {
+        return $this->restrictedDepartments;
+    }
+
+    /**
+     * Set vendor designations (DEI)
+     *
+     * @param array $vendorDesignations
+     */
+    public function setVendorDesignations(array $vendorDesignations) : void
+    {
+        $this->vendorDesignations = $vendorDesignations;
+    }
+
+    public function writeXmlVendorDesignations(XMLWriter &$xml)
+    {
+        $xml->startElement('VENDORDESIGNATIONS');
+        foreach ($this->getVendorDesignations() as $vendor_designation) {
+            $xml->startElement('VENDORDESIGNATION');
+            $xml->writeElement('DESIGNATIONNAME', $vendor_designation->name, true);
+            $xml->writeElement('EXPIRATIONDATE', $vendor_designation->expiration_date, true);
+            $xml->endElement(); //VENDORDESIGNATION
+        }
+        $xml->endElement(); //VENDORDESIGNATIONS
     }
 
     /**

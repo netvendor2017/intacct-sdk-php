@@ -145,6 +145,10 @@ class VendorUpdate extends AbstractVendor
             $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
 
+        if (count($this->getVendorDesignations()) > 0) {
+            $xml->writeElement('VENDORDESIGNATIONS', $this->getRestrictedDepartments());
+        }
+
         $this->writeXmlImplicitCustomFields($xml);
 
         $xml->endElement(); //VENDOR
