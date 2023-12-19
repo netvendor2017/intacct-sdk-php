@@ -154,6 +154,15 @@ class VendorCreate extends AbstractVendor
             $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
 
+        // DEI maps to vendorDesignations from our code to RealPage API
+        // Send what we have. We might not being tracking all the DEI and we will just not send them.
+        // Use RealPage UI to see if I can see how things map
+        if (count($this->getVendorDesignations()) > 0) {
+            $xml->writeElement('VENDORDESIGNATIONS', $this->getRestrictedDepartments());
+        }
+
+        // restirctedLocations in their property security should use the integration propertyID. -- Check to see if the propertyId is tracked on our end.
+
         $this->writeXmlImplicitCustomFields($xml);
 
         $xml->endElement(); //VENDOR
