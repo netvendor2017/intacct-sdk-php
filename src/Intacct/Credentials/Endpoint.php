@@ -29,9 +29,7 @@ class Endpoint
     const ENDPOINT_URL_ENV_NAME = 'INTACCT_ENDPOINT_URL';
 
     /** @var string */
-    const DOMAIN_NAME = 'intacct.com';
-
-    const FULL_QUALIFIED_DOMAIN_NAME = self::DOMAIN_NAME . ".";
+    const DOMAIN_NAME = ['intacct.com', 'realpage.com'];
 
     /** @var string */
     private $url;
@@ -52,11 +50,9 @@ class Endpoint
 
     private function isDomainValid(string $hostName) {
          $checkMainDomain = "." . self::DOMAIN_NAME;
-         $checkFQDNDomain = "." . self::FULL_QUALIFIED_DOMAIN_NAME;
 
          // if hostname is 1-1 for Main or FQDN, it is valid
-         return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain) ||
-             (substr($hostName, -strlen($checkFQDNDomain)) === $checkFQDNDomain);
+         return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain)
 
     }
 
@@ -93,7 +89,7 @@ class Endpoint
         $host = parse_url($url, PHP_URL_HOST);
         if (!$this->isDomainValid($host)) {
             throw new \InvalidArgumentException(
-                'Endpoint URL is not a valid ' . self::DOMAIN_NAME . ' domain name.'
+                'asdfasdfEndpoint URL is not a valid ' . self::DOMAIN_NAME . ' domain name.'
             );
         }
 
