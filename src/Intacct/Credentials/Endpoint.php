@@ -51,6 +51,8 @@ class Endpoint
     private function isDomainValid(string $hostName) {
          $checkMainDomain = "." . self::DOMAIN_NAME;
 
+         dd($hostName);
+
          // if hostname is 1-1 for Main or FQDN, it is valid
          return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain)
 
