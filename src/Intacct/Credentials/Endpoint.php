@@ -54,7 +54,7 @@ class Endpoint
          dd($hostName);
 
          // if hostname is 1-1 for Main or FQDN, it is valid
-         return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain)
+         return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain);
 
     }
 
