@@ -29,9 +29,6 @@ class Endpoint
     const ENDPOINT_URL_ENV_NAME = 'INTACCT_ENDPOINT_URL';
 
     /** @var string */
-    const DOMAIN_NAME = ['intacct.com', 'realpage.com'];
-
-    /** @var string */
     private $url;
 
     /**
@@ -46,16 +43,6 @@ class Endpoint
         } else {
             $this->setUrl($config->getEndpointUrl());
         }
-    }
-
-    private function isDomainValid(string $hostName) {
-         $checkMainDomain = "." . self::DOMAIN_NAME;
-
-         dd($hostName);
-
-         // if hostname is 1-1 for Main or FQDN, it is valid
-         return (substr($hostName, -strlen($checkMainDomain)) === $checkMainDomain);
-
     }
 
     /**
@@ -85,13 +72,6 @@ class Endpoint
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             throw new \InvalidArgumentException(
                 'Endpoint URL is not a valid URL.'
-            );
-        }
-
-        $host = parse_url($url, PHP_URL_HOST);
-        if (!$this->isDomainValid($host)) {
-            throw new \InvalidArgumentException(
-                'asdfasdfEndpoint URL is not a valid ' . self::DOMAIN_NAME . ' domain name.'
             );
         }
 
