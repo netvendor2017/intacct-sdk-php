@@ -245,9 +245,9 @@ class RequestHandler
                                 return $response;
                             }
                             $contentType = trim($response->getHeaderLine('content-type'));
-                            if (\stripos($contentType, '/xml') !== false) {
+//                            if (\stripos($contentType, '/xml') !== false) {
                                 return $response;
-                            }
+//                            }
 
                             throw RequestException::create($request, $response);
                         }
