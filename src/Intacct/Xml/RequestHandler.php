@@ -244,10 +244,6 @@ class RequestHandler
                             if ($code < 400) {
                                 return $response;
                             }
-                            $contentType = trim($response->getHeaderLine('content-type'));
-//                            if (\stripos($contentType, '/xml') !== false) {
-                                return $response;
-//                            }
 
                             throw RequestException::create($request, $response);
                         }
@@ -279,11 +275,11 @@ class RequestHandler
         return (new Client(['handler' => $handler]))
             ->post($this->getEndpointUrl(), [
                 'body' => $xml->flush(),
-                'headers' => [
+                'headers' => array_merge([
                     'content-type' => 'application/xml',
                     'Accept-Encoding' => 'gzip,deflate',
                     'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
-                ],
+                ], $this->getClientConfig()->getHeaders()),
                 'timeout' => $this->requestConfig->getMaxTimeout()
             ])
         ;

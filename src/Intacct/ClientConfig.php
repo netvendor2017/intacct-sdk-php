@@ -281,6 +281,15 @@ class ClientConfig
         $this->headers[$key] = $value;
     }
 
+    public function needsSenderId() : bool
+    {
+        $headerKeys = array_map(function ($key) {
+            return strtolower($key ?? '');
+        }, array_keys($this->headers));
+
+        return ! empty($this->headers) && array_key_exists('apikey', $headerKeys);
+    }
+
     /** @var CredentialsInterface */
     private $credentials;
 

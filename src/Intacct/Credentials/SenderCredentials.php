@@ -52,15 +52,15 @@ class SenderCredentials
         if (!$config->getProfileName()) {
             $config->setProfileName($envProfileName);
         }
-        if (!$config->getSenderId()) {
+        if ($config->needsSenderId() && !$config->getSenderId()) {
             $config->setSenderId(getenv(static::SENDER_ID_ENV_NAME));
         }
-        if (!$config->getSenderPassword()) {
+        if ($config->needsSenderId() && !$config->getSenderPassword()) {
             $config->setSenderPassword(getenv(static::SENDER_PASSWORD_ENV_NAME));
         }
 
         if (
-            !$config->getSenderId()
+            $config->needsSenderId()
             && !$config->getSenderPassword()
             && $config->getProfileName()
         ) {
@@ -78,13 +78,14 @@ class SenderCredentials
             }
         }
         
-        if (!$config->getSenderId()) {
+        if ($config->needsSenderId() && !$config->getSenderId()) {
             throw new \InvalidArgumentException(
                 'Required Sender ID not supplied in config or env variable "'
                 . static::SENDER_ID_ENV_NAME . '"'
             );
         }
-        if (!$config->getSenderPassword()) {
+
+        if ($config->needsSenderId() && !$config->getSenderPassword()) {
             throw new \InvalidArgumentException(
                 'Required Sender Password not supplied in config or env variable "'
                 . static::SENDER_PASSWORD_ENV_NAME . '"'
