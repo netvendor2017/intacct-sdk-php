@@ -254,6 +254,33 @@ class ClientConfig
         $this->userPassword = $userPassword;
     }
 
+    private $headers;
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     */
+    public function addHeader(string $key, string $value)
+    {
+        $this->headers[$key] = $value;
+    }
+
     /** @var CredentialsInterface */
     private $credentials;
 
