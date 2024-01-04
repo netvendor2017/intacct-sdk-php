@@ -40,11 +40,6 @@ class ControlBlock
      */
     public function setSenderId(string $senderId)
     {
-        if (!$senderId) {
-            throw new \InvalidArgumentException(
-                'Sender ID is required and cannot be blank'
-            );
-        }
         $this->senderId = $senderId;
     }
     
@@ -64,11 +59,6 @@ class ControlBlock
      */
     public function setPassword(string $password)
     {
-        if (!$password) {
-            throw new \InvalidArgumentException(
-                'Sender Password is required and cannot be blank'
-            );
-        }
         $this->password = $password;
     }
     
