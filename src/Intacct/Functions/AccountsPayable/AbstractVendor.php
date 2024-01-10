@@ -1820,8 +1820,9 @@ abstract class AbstractVendor extends AbstractFunction
         $xml->startElement('VENDORDESIGNATIONS');
         foreach ($this->getVendorDesignations() as $vendor_designation) {
             $xml->startElement('VENDORDESIGNATION');
-            $xml->writeElement('DESIGNATIONNAME', $vendor_designation['name'], true);
-            $xml->writeElement('EXPIRATIONDATE', $vendor_designation['expiration_date'], true);
+            $xml->writeElement('DESIGNATIONNAME', $vendor_designation['name'] ?? null, true);
+            $xml->writeElement('EXPIRATIONDATE', $vendor_designation['value'] ?? null, true);
+            $xml->writeElement('EXPIRATIONDATE', $vendor_designation['date'] ?? null, true);
             $xml->endElement(); //VENDORDESIGNATION
         }
         $xml->endElement(); //VENDORDESIGNATIONS
