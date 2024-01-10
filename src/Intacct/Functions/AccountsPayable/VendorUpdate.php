@@ -139,7 +139,7 @@ class VendorUpdate extends AbstractVendor
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
 
-        if (count($this->getRestrictedLocations()) > 0) {
+        if (count($this->getRestrictedLocationsRaw()) > 0) {
             $xml->writeElement('RESTRICTEDLOCATIONS', $this->getRestrictedLocations());
         }
         if (count($this->getRestrictedDepartments()) > 0) {
