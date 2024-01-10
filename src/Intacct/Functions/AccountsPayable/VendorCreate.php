@@ -156,9 +156,29 @@ class VendorCreate extends AbstractVendor
 
         // DEI maps to vendorDesignations from our code to RealPage API
         // Send what we have. We might not being tracking all the DEI and we will just not send them.
+
         // Use RealPage UI to see if I can see how things map
-        if (count($this->getVendorDesignations()) > 0) {
-            $xml->writeElement('VENDORDESIGNATIONS', $this->getRestrictedDepartments());
+        if (!empty($this->getVendorDesignations())) {
+            $this->writeXmlVendorDesignations($xml);
+        }
+
+        if ($this->getInsuranceRequired()) {
+            $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
+
+            $xml->writeElement('VENDORINSURANCETYPE1', $this->getVendorInsuranceType1());
+            $xml->writeElement('EXPIRATIONDATE1', $this->getExpirationDate1());
+            $xml->writeElement('CARRIERNAME1', $this->getCarrierName1());
+            $xml->writeElement('POLICYNUMBER1', $this->getPolicyNumber1());
+
+            $xml->writeElement('VENDORINSURANCETYPE2', $this->getVendorInsuranceType2());
+            $xml->writeElement('EXPIRATIONDATE2', $this->getExpirationDate2());
+            $xml->writeElement('CARRIERNAME2', $this->getCarrierName2());
+            $xml->writeElement('POLICYNUMBER2', $this->getPolicyNumber2());
+
+            $xml->writeElement('VENDORINSURANCETYPE3', $this->getVendorInsuranceType3());
+            $xml->writeElement('EXPIRATIONDATE3', $this->getExpirationDate3());
+            $xml->writeElement('CARRIERNAME3', $this->getCarrierName3());
+            $xml->writeElement('POLICYNUMBER3', $this->getPolicyNumber3());
         }
 
         // restirctedLocations in their property security should use the integration propertyID. -- Check to see if the propertyId is tracked on our end.

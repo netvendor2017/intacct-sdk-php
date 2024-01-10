@@ -138,6 +138,7 @@ class VendorUpdate extends AbstractVendor
         // TODO: Location assigned account numbers
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
+
         if (count($this->getRestrictedLocations()) > 0) {
             $xml->writeElement('RESTRICTEDLOCATIONS', $this->getRestrictedLocations());
         }
@@ -145,8 +146,29 @@ class VendorUpdate extends AbstractVendor
             $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
 
-        if (count($this->getVendorDesignations()) > 0) {
-            $xml->writeElement('VENDORDESIGNATIONS', $this->getRestrictedDepartments());
+        if (!empty($this->getVendorDesignations())) {
+            $this->writeXmlVendorDesignations($xml);
+        }
+
+        // We need DEI here too
+
+        if ($this->getInsuranceRequired()) {
+            $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
+
+            $xml->writeElement('VENDORINSURANCETYPE1', $this->getVendorInsuranceType1());
+            $xml->writeElement('EXPIRATIONDATE1', $this->getExpirationDate1());
+            $xml->writeElement('CARRIERNAME1', $this->getCarrierName1());
+            $xml->writeElement('POLICYNUMBER1', $this->getPolicyNumber1());
+
+            $xml->writeElement('VENDORINSURANCETYPE2', $this->getVendorInsuranceType2());
+            $xml->writeElement('EXPIRATIONDATE2', $this->getExpirationDate2());
+            $xml->writeElement('CARRIERNAME2', $this->getCarrierName2());
+            $xml->writeElement('POLICYNUMBER2', $this->getPolicyNumber2());
+
+            $xml->writeElement('VENDORINSURANCETYPE3', $this->getVendorInsuranceType3());
+            $xml->writeElement('EXPIRATIONDATE3', $this->getExpirationDate3());
+            $xml->writeElement('CARRIERNAME3', $this->getCarrierName3());
+            $xml->writeElement('POLICYNUMBER3', $this->getPolicyNumber3());
         }
 
         $this->writeXmlImplicitCustomFields($xml);

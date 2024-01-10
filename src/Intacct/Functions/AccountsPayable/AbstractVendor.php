@@ -236,6 +236,62 @@ abstract class AbstractVendor extends AbstractFunction
     protected $vendorDesignations = [];
 
     /**
+     * @var
+     */
+    protected $insuranceRequired;
+
+    /**
+     * @var
+     */
+    protected $vendorInsuranceType1;
+    /**
+     * @var
+     */
+    protected $expirationDate1;
+    /**
+     * @var
+     */
+    protected $carrierName1;
+    /**
+     * @var
+     */
+    protected $policyNumber1;
+
+    /**
+     * @var
+     */
+    protected $vendorInsuranceType2;
+    /**
+     * @var
+     */
+    protected $expirationDate2;
+    /**
+     * @var
+     */
+    protected $carrierName2;
+    /**
+     * @var
+     */
+    protected $policyNumber2;
+
+    /**
+     * @var
+     */
+    protected $vendorInsuranceType3;
+    /**
+     * @var
+     */
+    protected $expirationDate3;
+    /**
+     * @var
+     */
+    protected $carrierName3;
+    /**
+     * @var
+     */
+    protected $policyNumber3;
+
+    /**
      * Get vendor ID
      *
      * @return string
@@ -1468,19 +1524,39 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get restricted locations
      *
-     * @return array
+     * @return string
      */
     public function getRestrictedLocations()
+    {
+    return implode('~', $this->restrictedLocations);
+    }
+
+    /**
+     * Get restricted locations raw
+     *
+     * @return array
+     */
+    public function getRestrictedLocationsRaw()
     {
         return $this->restrictedLocations;
     }
 
     /**
+     * Add restricted location
+     *
+     * @param string $restrictedLocation
+     */
+    public function addRestrictedLocation(string $restrictedLocation)
+    {
+        $this->restrictedLocations[] = $restrictedLocation;
+    }
+
+    /**
      * Set restricted locations
      *
-     * @param array $restrictedLocations
+     * @param string[] $restrictedLocations
      */
-    public function setRestrictedLocations($restrictedLocations)
+    public function setRestrictedLocations(array $restrictedLocations)
     {
         $this->restrictedLocations = $restrictedLocations;
     }
@@ -1516,13 +1592,228 @@ abstract class AbstractVendor extends AbstractFunction
     }
 
     /**
+     * Add vendor designation (DEI)
+     *
+     * @param array $vendorDesignation
+     */
+    public function addVendorDesignation(array $vendorDesignation) : void
+    {
+        if (!isset($vendorDesignation['name']) || !isset($vendorDesignation['date'])) {
+            throw new \InvalidArgumentException('Adding a vendor designation must include `name` and `date`');
+        }
+
+        $this->vendorDesignations[] = $vendorDesignation;
+    }
+
+    /**
      * Set vendor designations (DEI)
      *
      * @param array $vendorDesignations
      */
     public function setVendorDesignations(array $vendorDesignations) : void
     {
+        foreach ($vendorDesignations as $vendorDesignation) {
+            if (!isset($vendorDesignation['name']) || !isset($vendorDesignation['date'])) {
+                throw new \InvalidArgumentException('Each vendor designation must include `name` and `date`');
+            }
+        }
+
         $this->vendorDesignations = $vendorDesignations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInsuranceRequired() {
+        return $this->insuranceRequired;
+    }
+
+    /**
+     * @param bool $insuranceRequired
+     * @return void
+     */
+    public function setInsuranceRequired(bool $insuranceRequired) {
+        $this->insuranceRequired = $insuranceRequired;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVendorInsuranceType1() {
+        return $this->vendorInsuranceType1;
+    }
+
+    /**
+     * @param string $vendorInsuranceType1
+     * @return string
+     */
+    public function setVendorInsuranceType1(string $vendorInsuranceType1) {
+        return $this->vendorInsuranceType1 = $vendorInsuranceType1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpirationDate1() {
+        return $this->expirationDate1;
+    }
+
+    /**
+     * @param string $expirationDate1
+     * @return string
+     */
+    public function setExpirationDate1(string $expirationDate1) {
+        return $this->expirationDate1 = $expirationDate1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCarrierName1() {
+        return $this->carrierName1;
+    }
+
+    /**
+     * @param string $carrierName1
+     * @return string
+     */
+    public function setCarrierName1(string $carrierName1) {
+        return $this->carrierName1 = $carrierName1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPolicyNumber1() {
+        return $this->policyNumber1;
+    }
+
+    /**
+     * @param string $policyNumber1
+     * @return string
+     */
+    public function setPolicyNumber1(string $policyNumber1) {
+        return $this->policyNumber1 = $policyNumber1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVendorInsuranceType2() {
+        return $this->vendorInsuranceType2;
+    }
+
+    /**
+     * @param string $vendorInsuranceType2
+     * @return string
+     */
+    public function setVendorInsuranceType2(string $vendorInsuranceType2) {
+        return $this->vendorInsuranceType2 = $vendorInsuranceType2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpirationDate2() {
+        return $this->expirationDate2;
+    }
+
+    /**
+     * @param string $expirationDate2
+     * @return string
+     */
+    public function setExpirationDate2(string $expirationDate2) {
+        return $this->expirationDate2 = $expirationDate2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCarrierName2() {
+        return $this->carrierName2;
+    }
+
+    /**
+     * @param string $carrierName2
+     * @return string
+     */
+    public function setCarrierName2(string $carrierName2) {
+        return $this->carrierName2 = $carrierName2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPolicyNumber2() {
+        return $this->policyNumber2;
+    }
+
+    /**
+     * @param string $policyNumber2
+     * @return string
+     */
+    public function setPolicyNumber2(string $policyNumber2) {
+        return $this->policyNumber2 = $policyNumber2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVendorInsuranceType3() {
+        return $this->vendorInsuranceType3;
+    }
+
+    /**
+     * @param string $vendorInsuranceType3
+     * @return string
+     */
+    public function setVendorInsuranceType3(string $vendorInsuranceType3) {
+        return $this->vendorInsuranceType3 = $vendorInsuranceType3;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpirationDate3() {
+        return $this->expirationDate3;
+    }
+
+    /**
+     * @param string $expirationDate3
+     * @return string
+     */
+    public function setExpirationDate3(string $expirationDate3) {
+        return $this->expirationDate3 = $expirationDate3;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCarrierName3() {
+        return $this->carrierName3;
+    }
+
+    /**
+     * @param string $carrierName3
+     * @return string
+     */
+    public function setCarrierName3(string $carrierName3) {
+        return $this->carrierName3 = $carrierName3;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPolicyNumber3() {
+        return $this->policyNumber3;
+    }
+
+    /**
+     * @param string $policyNumber3
+     * @return string
+     */
+    public function setPolicyNumber3(string $policyNumber3) {
+        return $this->policyNumber3 = $policyNumber3;
     }
 
     public function writeXmlVendorDesignations(XMLWriter &$xml)
@@ -1530,8 +1821,8 @@ abstract class AbstractVendor extends AbstractFunction
         $xml->startElement('VENDORDESIGNATIONS');
         foreach ($this->getVendorDesignations() as $vendor_designation) {
             $xml->startElement('VENDORDESIGNATION');
-            $xml->writeElement('DESIGNATIONNAME', $vendor_designation->name, true);
-            $xml->writeElement('EXPIRATIONDATE', $vendor_designation->expiration_date, true);
+            $xml->writeElement('DESIGNATIONNAME', $vendor_designation['name'], true);
+            $xml->writeElement('EXPIRATIONDATE', $vendor_designation['expiration_date'], true);
             $xml->endElement(); //VENDORDESIGNATION
         }
         $xml->endElement(); //VENDORDESIGNATIONS
