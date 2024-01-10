@@ -147,9 +147,10 @@ class VendorCreate extends AbstractVendor
         // TODO: Location assigned account numbers
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
-        if (count($this->getRestrictedLocationsRaw()) > 0) {
-            $xml->writeElement('RESTRICTEDLOCATIONS', $this->getRestrictedLocations());
+        if (!empty($this->getRestrictedLocations())) {
+            $this->writeXmlVendorRestrictedLocations($xml);
         }
+
         if (count($this->getRestrictedDepartments()) > 0) {
             $xml->writeElement('RESTRICTEDDEPARTMENTS', $this->getRestrictedDepartments());
         }
