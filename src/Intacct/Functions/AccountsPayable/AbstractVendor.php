@@ -1524,19 +1524,9 @@ abstract class AbstractVendor extends AbstractFunction
     /**
      * Get restricted locations
      *
-     * @return string
-     */
-    public function getRestrictedLocations()
-    {
-    return implode('~', $this->restrictedLocations);
-    }
-
-    /**
-     * Get restricted locations raw
-     *
      * @return array
      */
-    public function getRestrictedLocationsRaw()
+    public function getRestrictedLocations()
     {
         return $this->restrictedLocations;
     }
@@ -1588,7 +1578,7 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function getVendorDesignations() : array
     {
-        return $this->restrictedDepartments;
+        return $this->vendorDesignations;
     }
 
     /**
@@ -1814,6 +1804,15 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function setPolicyNumber3(string $policyNumber3) {
         return $this->policyNumber3 = $policyNumber3;
+    }
+
+    public function writeXmlVendorRestrictedLocations(XMLWriter &$xml)
+    {
+        $xml->startElement('RESTRICTEDLOCATIONS');
+        foreach ($this->getRestrictedLocations() as $restrictedLocation) {
+            $xml->writeElement('LOCATIONID', $restrictedLocation, false);
+        }
+        $xml->endElement(); // RESTRICTEDLOCATIONS
     }
 
     public function writeXmlVendorDesignations(XMLWriter &$xml)
