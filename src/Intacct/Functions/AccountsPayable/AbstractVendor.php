@@ -1598,7 +1598,7 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function addVendorDesignation(array $vendorDesignation) : void
     {
-        if (!isset($vendorDesignation['name']) || !isset($vendorDesignation['date'])) {
+        if (!isset($vendorDesignation['name'])) {
             throw new \InvalidArgumentException('Adding a vendor designation must include `name` and `date`');
         }
 
@@ -1613,8 +1613,8 @@ abstract class AbstractVendor extends AbstractFunction
     public function setVendorDesignations(array $vendorDesignations) : void
     {
         foreach ($vendorDesignations as $vendorDesignation) {
-            if (!isset($vendorDesignation['name']) || !isset($vendorDesignation['date'])) {
-                throw new \InvalidArgumentException('Each vendor designation must include `name` and `date`');
+            if (!isset($vendorDesignation['name'])) {
+                throw new \InvalidArgumentException('Each vendor designation must include `name`');
             }
         }
 
