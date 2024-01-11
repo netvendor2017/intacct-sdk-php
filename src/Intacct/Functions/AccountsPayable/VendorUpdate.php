@@ -138,8 +138,6 @@ class VendorUpdate extends AbstractVendor
         // TODO: Location assigned account numbers
 
         $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
-
-        $xml->writeElement('OBJECTRESTRICTION', $this->getRestrictionType());
         if (!empty($this->getRestrictedLocations())) {
             $this->writeXmlVendorRestrictedLocations($xml);
         }
