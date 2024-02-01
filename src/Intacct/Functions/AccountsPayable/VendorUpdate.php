@@ -150,10 +150,15 @@ class VendorUpdate extends AbstractVendor
             $this->writeXmlVendorDesignations($xml);
         }
 
-        // We need DEI here too
+        if (!empty($this->getCustomFieldsV2())) {
+            $this->writeXmlExplicitCustomFieldsV2($xml);
+        }
 
+        $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
+
+
+        // Need to do something with this since they are custom fields
         if ($this->getInsuranceRequired()) {
-            $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
 
             $xml->writeElement('VENDORINSURANCETYPE1', $this->getVendorInsuranceType1());
             $xml->writeElement('EXPIRATIONDATE1', $this->getExpirationDate1());

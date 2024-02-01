@@ -19,6 +19,7 @@ namespace Intacct\Functions\AccountsPayable;
 
 use Intacct\Functions\AbstractFunction;
 use Intacct\Functions\Traits\CustomFieldsTrait;
+use Intacct\Functions\Traits\CustomFieldsV2Trait;
 use Intacct\Xml\XMLWriter;
 
 abstract class AbstractVendor extends AbstractFunction
@@ -34,6 +35,7 @@ abstract class AbstractVendor extends AbstractFunction
     const RESTRICTION_TYPE_RESTRICTED = 'Restricted';
 
     use CustomFieldsTrait;
+    use CustomFieldsV2Trait;
 
     /** @var string */
     protected $vendorId;
