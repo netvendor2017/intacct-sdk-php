@@ -67,6 +67,7 @@ class VendorUpdate extends AbstractVendor
         $xml->writeElement('EMAIL2', $this->getSecondaryEmailAddress());
         $xml->writeElement('URL1', $this->getPrimaryUrl());
         $xml->writeElement('URL2', $this->getSecondaryUrl());
+        $xml->writeElement('PO_REQUIRED', $this->getPoRequired());
 
         $this->writeXmlMailAddress($xml);
 
