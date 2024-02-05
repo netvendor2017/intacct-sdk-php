@@ -67,12 +67,12 @@ class VendorUpdate extends AbstractVendor
         $xml->writeElement('EMAIL2', $this->getSecondaryEmailAddress());
         $xml->writeElement('URL1', $this->getPrimaryUrl());
         $xml->writeElement('URL2', $this->getSecondaryUrl());
-        $xml->writeElement('REQUIRE_PO', $this->getPoRequired());
 
         $this->writeXmlMailAddress($xml);
 
         $xml->endElement(); //DISPLAYCONTACT
 
+        $xml->writeElement('REQUIRE_PO', $this->getPoRequired());
         $xml->writeElement('ONETIME', $this->isOneTime());
 
         if ($this->isActive() === true) {
