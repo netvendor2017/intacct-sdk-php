@@ -67,7 +67,7 @@ class VendorUpdate extends AbstractVendor
         $xml->writeElement('EMAIL2', $this->getSecondaryEmailAddress());
         $xml->writeElement('URL1', $this->getPrimaryUrl());
         $xml->writeElement('URL2', $this->getSecondaryUrl());
-        $xml->writeElement('REQUIRE_PO', $this->getPoRequired());
+        $xml->writeElement('PO_REQUIRE', $this->getPoRequired());
 
         $this->writeXmlMailAddress($xml);
 
@@ -156,7 +156,6 @@ class VendorUpdate extends AbstractVendor
         }
 
         $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
-
 
         // Need to do something with this since they are custom fields
         if ($this->getInsuranceRequired()) {
