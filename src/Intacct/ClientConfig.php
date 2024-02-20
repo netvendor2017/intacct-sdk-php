@@ -257,9 +257,9 @@ class ClientConfig
     private $headers;
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getHeaders()
+    public function getHeaders() : ?array
     {
         return $this->headers;
     }
@@ -267,7 +267,7 @@ class ClientConfig
     /**
      * @param array $headers
      */
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers) : void
     {
         $this->headers = $headers;
     }
@@ -276,7 +276,7 @@ class ClientConfig
      * @param string $key
      * @param string $value
      */
-    public function addHeader(string $key, string $value)
+    public function addHeader(string $key, string $value) : void
     {
         $this->headers[$key] = $value;
     }
