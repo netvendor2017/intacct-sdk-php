@@ -166,7 +166,6 @@ class VendorCreate extends AbstractVendor
 
         $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
 
-        // I need to do something with this
         if ($this->getInsuranceRequired()) {
 
             $xml->writeElement('VENDORINSURANCETYPE1', $this->getVendorInsuranceType1());
@@ -184,8 +183,6 @@ class VendorCreate extends AbstractVendor
             $xml->writeElement('CARRIERNAME3', $this->getCarrierName3());
             $xml->writeElement('POLICYNUMBER3', $this->getPolicyNumber3());
         }
-
-        // restirctedLocations in their property security should use the integration propertyID. -- Check to see if the propertyId is tracked on our end.
 
         $this->writeXmlImplicitCustomFields($xml);
         $this->writeXmlExplicitCustomFieldsV2($xml);
