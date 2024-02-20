@@ -157,7 +157,6 @@ class VendorUpdate extends AbstractVendor
 
         $xml->writeElement('INSURANCEREQUIRED', $this->getInsuranceRequired());
 
-        // Need to do something with this since they are custom fields
         if ($this->getInsuranceRequired()) {
 
             $xml->writeElement('VENDORINSURANCETYPE1', $this->getVendorInsuranceType1());
