@@ -283,11 +283,9 @@ class ClientConfig
 
     public function needsSenderId() : bool
     {
-        $headerKeys = array_map(function ($key) {
-            return strtolower($key ?? '');
-        }, array_keys($this->headers));
+        $headerKeys = array_map('strtolower', array_keys($this->headers));
 
-        return ! empty($this->headers) && array_key_exists('apikey', $headerKeys);
+        return array_key_exists('apikey', $headerKeys);
     }
 
     /** @var CredentialsInterface */

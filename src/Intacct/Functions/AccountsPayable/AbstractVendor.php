@@ -241,7 +241,7 @@ abstract class AbstractVendor extends AbstractFunction
     protected $vendorDesignations = [];
 
     /**
-     * @var
+     * @var bool
      */
     protected $insuranceRequired;
 
