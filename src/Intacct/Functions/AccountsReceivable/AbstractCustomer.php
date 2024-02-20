@@ -1385,7 +1385,7 @@ abstract class AbstractCustomer extends AbstractFunction
      *
      * @param string $restrictionType
      */
-    public function setRestrictionType($restrictionType)
+    public function setRestrictionType(string $restrictionType): string
     {
         $restrictionTypes = [
             static::RESTRICTION_TYPE_UNRESTRICTED,
