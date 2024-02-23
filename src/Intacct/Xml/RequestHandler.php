@@ -279,7 +279,7 @@ class RequestHandler
                     'content-type' => 'application/xml',
                     'Accept-Encoding' => 'gzip,deflate',
                     'User-Agent' => "intacct-sdk-php-client/" . static::VERSION,
-                ], $this->getClientConfig()->getHeaders()),
+                ], $this->getClientConfig()->getHeaders() ?? []),
                 'timeout' => $this->requestConfig->getMaxTimeout()
             ])
         ;
