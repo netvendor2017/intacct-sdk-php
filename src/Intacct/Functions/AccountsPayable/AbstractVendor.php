@@ -1533,7 +1533,7 @@ abstract class AbstractVendor extends AbstractFunction
      */
     public function getRestrictedLocations()
     {
-        return implode('~', $this->restrictedLocations);
+        return implode('#~#', $this->restrictedLocations);
     }
 
     public function getRestrictedLocationsRaw()
