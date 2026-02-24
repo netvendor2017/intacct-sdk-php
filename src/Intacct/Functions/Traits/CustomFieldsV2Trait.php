@@ -41,7 +41,7 @@ trait CustomFieldsV2Trait
     protected function writeXmlExplicitCustomFieldsV2(XMLWriter &$xml)
     {
         if (count($this->customFieldsV2) > 0) {
-            foreach ($this->customFields as $customFieldName => $customFieldValue) {
+            foreach ($this->customFieldsV2 as $customFieldName => $customFieldValue) {
                 $xml->writeElement($customFieldName, $customFieldValue, true);
             }
         }
